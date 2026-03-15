@@ -135,7 +135,13 @@
       background:white;
       cursor:pointer;
       color:var(--ink);
-      min-height:58px;
+      min-height:72px;
+    }
+
+    .scale .tiny{
+      display:block;
+      margin-top:4px;
+      line-height:1.2;
     }
 
     .scale button.selected{
@@ -174,6 +180,7 @@
     .knum{font-size:1.8rem;font-weight:800}
 
     .checkline{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+    .mini-list p{margin:.4rem 0}
 
     @media print{
       .topbar,.actions,.no-print{display:none !important}
@@ -207,6 +214,13 @@
         para ayudarte a ti y también para que podamos revisarlas juntas en el proceso.
         La app funciona sin backend: la información se guarda en este dispositivo y puedes
         exportarla para compartirla conmigo en sesión.
+      </div>
+
+      <div class="card mini-list">
+        <h3>Cómo usar estos tres botones</h3>
+        <p><strong>Empezar escaneo inicial:</strong> úsalo la primera vez o cuando quieras hacer una fotografía amplia y honesta de cómo estás.</p>
+        <p><strong>Hacer seguimiento:</strong> úsalo una vez ya tengas un escaneo previo y quieras revisar semanal o quincenalmente cómo se han movido las áreas.</p>
+        <p><strong>Ver comparativas:</strong> úsalo para revisar registros anteriores y ver tendencias, avances o recaídas.</p>
       </div>
 
       <div class="grid two">
@@ -285,6 +299,7 @@
 
       <div class="actions">
         <button class="btn" id="saveFunnelBtn">Guardar embudo</button>
+        <button class="btn secondary" id="restartBtn">Volver al inicio</button>
       </div>
     </div>
 
@@ -315,8 +330,20 @@
 
 <script>
 (() => {
-  const STORAGE_KEY = "viviana_reset_app_v2";
-  const severityLabels = {1:"Muy bajo / muy bien",2:"Bajo",3:"Intermedio",4:"Alto",5:"Muy alto / muy mal"};
+  const STORAGE_KEY = "viviana_reset_app_v3";
+  const genericScaleLabels = {
+    stress: {1:"Muy bajo",2:"Bajo",3:"Intermedio",4:"Alto",5:"Muy alto"},
+    clarity: {1:"Nada claro",2:"Poco claro",3:"A medias",4:"Bastante claro",5:"Muy claro"},
+    difficulty: {1:"Nada difícil",2:"Poco difícil",3:"Medianamente difícil",4:"Muy difícil",5:"Extremadamente difícil"},
+    safety: {1:"Nada segura",2:"Poco segura",3:"Medianamente segura",4:"Bastante segura",5:"Muy segura"},
+    presence: {1:"Muy poco presente",2:"Presencia mínima",3:"Podría ser mejor",4:"Bastante presente",5:"Demasiado presente / invado"},
+    rest: {1:"Nada descansada",2:"Poco descansada",3:"A medias",4:"Bastante descansada",5:"Muy descansada"},
+    image: {1:"Muy mal",2:"Mal",3:"Regular",4:"Bien",5:"Muy bien"},
+    dependency: {1:"Nada",2:"Poco",3:"A medias",4:"Bastante",5:"Muchísimo"},
+    capacity: {1:"Nada capaz",2:"Poco capaz",3:"A medias",4:"Bastante capaz",5:"Muy capaz"},
+    habit: {1:"Casi nada",2:"Poco",3:"A medias",4:"Mucho",5:"Demasiado"},
+    base: {1:"Muy bajo",2:"Bajo",3:"Intermedio",4:"Alto",5:"Muy alto"}
+  };
   const followupChoices = ["Más organizada","Con altibajos","Vuelvo a lo mismo","Muy sobrepasada","Sin rumbo"];
 
   const modules = [
@@ -326,9 +353,9 @@
       intro:"Antes de hablar de cambios, toca mirar si hay algo urgente que proteger.",
       pedagogy:"A veces una persona tiene muy claro lo que no quiere repetir, pero aun así sigue emocionalmente expuesta. Esta parte no es para asustarte: es para ver si hay algún riesgo que no conviene minimizar.",
       questions:[
-        {id:"s1",type:"scale",area:"seguridad",prompt:"Hoy, ¿qué tan segura te sientes emocional y físicamente en tu vida actual?",explain:"No se trata solo de peligro físico. También cuenta sentirte invadida, perseguida, manipulada o sin piso.",reverse:true},
+        {id:"s1",type:"scale",area:"seguridad",prompt:"Hoy, ¿qué tan segura te sientes emocional y físicamente en tu vida actual?",explain:"No se trata solo de peligro físico. También cuenta sentirte invadida, perseguida, manipulada o sin piso.",scaleSet:"safety"},
         {id:"s2",type:"yesno",area:"seguridad",prompt:"¿Hay alguna persona con la que sientas que debes poner distancia, límites o protección adicional?",explain:"A veces una ruptura terminó en teoría, pero no del todo en la práctica."},
-        {id:"s3",type:"scale",area:"seguridad",prompt:"¿Qué tan atrapada te sientes en este momento de tu vida?",explain:"Sentirse atrapada no significa incapacidad. Significa que hoy la carga te supera o te reduce margen de maniobra."},
+        {id:"s3",type:"scale",area:"seguridad",prompt:"¿Qué tan atrapada te sientes en este momento de tu vida?",explain:"Sentirse atrapada no significa incapacidad. Significa que hoy la carga te supera o te reduce margen de maniobra.",scaleSet:"stress"},
         {id:"s4",type:"multi",area:"seguridad",prompt:"Cuando estás al límite, ¿qué se activa más en ti?",explain:"Esto ayuda a identificar tu forma de colapsar, no a etiquetarte.",options:["Llanto o derrumbe","Rabia o explosión","Trabajar más y no parar","Aislarme","Buscar compañía afectiva","Comer más","Sentir que no puedo con todo"]},
         {id:"s5",type:"text",area:"seguridad",prompt:"¿Qué situación te preocupa más en este momento?",explain:"Nómbrala claro. Lo difuso pesa más."}
       ]
@@ -339,9 +366,9 @@
       intro:"Mirar el vínculo con quien te ha sostenido, pero también te ha marcado.",
       pedagogy:"No todo apoyo fortalece del mismo modo. Hay ayudas que sostienen y ayudas que, al mismo tiempo, dejan deuda emocional, culpa o sensación de insuficiencia.",
       questions:[
-        {id:"m1",type:"scale",area:"madre",prompt:"¿Qué tanto influye hoy la opinión de tu madre en tus decisiones?",explain:"Aunque decidas distinto, puede seguir pesando por dentro."},
-        {id:"m2",type:"scale",area:"madre",prompt:"¿Qué tan criticada o inadecuada te sigues sintiendo frente a ella?",explain:"No pregunto si te critica objetivamente, sino cómo te queda resonando."},
-        {id:"m3",type:"scale",area:"madre",prompt:"¿Qué tan difícil te resulta sostener una decisión tuya cuando sabes que a tu madre no le gustará?",explain:"Aquí se ve el costo emocional de diferenciarte."},
+        {id:"m1",type:"scale",area:"madre",prompt:"¿Qué tanto influye hoy la opinión de tu madre en tus decisiones?",explain:"Aunque decidas distinto, puede seguir pesando por dentro.",scaleSet:"base"},
+        {id:"m2",type:"scale",area:"madre",prompt:"¿Qué tan criticada o inadecuada te sigues sintiendo frente a ella?",explain:"No pregunto si te critica objetivamente, sino cómo te queda resonando.",scaleSet:"stress"},
+        {id:"m3",type:"scale",area:"madre",prompt:"¿Qué tan difícil te resulta sostener una decisión tuya cuando sabes que a tu madre no le gustará?",explain:"Aquí se ve el costo emocional de diferenciarte.",scaleSet:"difficulty"},
         {id:"m4",type:"multi",area:"madre",prompt:"¿Qué papel sientes que ocupas más en tu familia?",explain:"Escoge los que más se te pegan.",options:["La fuerte","La que resuelve","La que sostiene económicamente","La hija que debe responder","La mediadora","La que intenta quedar bien","La que termina peleando por poner límites"]},
         {id:"m5",type:"text",area:"madre",prompt:"¿Qué límite con tu madre sabes que necesitas, pero todavía no logras sostener?",explain:"Un límite útil es concreto: sobre qué, cuándo y cómo."}
       ]
@@ -352,10 +379,10 @@
       intro:"No para llevar contabilidad aquí, sino para mirar si la vida que sostienes ya te está costando demasiado.",
       pedagogy:"No todo problema económico es gastar de más. A veces el problema es sostener demasiados frentes, demasiadas responsabilidades y demasiada tensión mental al mismo tiempo.",
       questions:[
-        {id:"e1",type:"scale",area:"economia",prompt:"¿Qué tan desbordada te sientes por la carga económica total que sostienes?",explain:"Incluye hijos, deudas, negocios, obligaciones familiares y presión mental."},
-        {id:"e2",type:"scale",area:"economia",prompt:"¿Qué tan claro tienes hoy tu déficit o margen real mensual?",explain:"No necesitas poner cifras aquí. Solo ver si lo tienes claro o si operas en neblina.",reverse:true},
+        {id:"e1",type:"scale",area:"economia",prompt:"¿Qué tan desbordada te sientes por la carga económica total que sostienes?",explain:"Incluye hijos, deudas, negocios, obligaciones familiares y presión mental.",scaleSet:"stress"},
+        {id:"e2",type:"scale",area:"economia",prompt:"¿Qué tan claro tienes hoy tu déficit o margen real mensual?",explain:"No necesitas poner cifras aquí. Solo ver si lo tienes claro o si operas en neblina.",scaleSet:"clarity"},
         {id:"e3",type:"multi",area:"economia",prompt:"¿Qué cosas están pesando más hoy en tu economía?",explain:"Marca todo lo que aplique.",options:["Gastos de los hijos","Deudas de pareja pasada","Préstamos o inversiones","Microempresa familiar","Negocios propios","Ayudas a terceros","Sostener demasiados frentes a la vez"]},
-        {id:"e4",type:"scale",area:"economia",prompt:"¿Qué tanto miedo te da bajar el ritmo, reducir algo o reorganizar tu estilo de vida?",explain:"A veces el problema no es solo la carga, sino el miedo a tocar la estructura actual."},
+        {id:"e4",type:"scale",area:"economia",prompt:"¿Qué tanto miedo te da bajar el ritmo, reducir algo o reorganizar tu estilo de vida?",explain:"A veces el problema no es solo la carga, sino el miedo a tocar la estructura actual.",scaleSet:"stress"},
         {id:"e5",type:"text",area:"economia",prompt:"Por fuera de esta app, revisa tus números. Aquí solo escribe: ¿cuál es hoy tu sensación real frente a la relación entre lo que entra y lo que sale?",explain:"Puedes responder algo como: entra menos de lo que necesito, o estoy pagando todo pero a un costo demasiado alto."}
       ]
     },
@@ -366,8 +393,8 @@
       pedagogy:"Una madre puede amar muchísimo y aun así estar tan sobrecargada que termina disponible solo en modo logística, corrección o urgencia.",
       questions:[
         {id:"h1",type:"text",area:"hijos",prompt:"¿Qué es lo que más te preocupa hoy de tu relación con tus hijos?",explain:"Nombra lo principal, no lo políticamente correcto."},
-        {id:"h2",type:"scale",area:"hijos",prompt:"¿Qué tan presente sientes que estás con Martín más allá de la logística y los regaños?",explain:"Presencia no es solo estar en la casa.",reverse:true},
-        {id:"h3",type:"scale",area:"hijos",prompt:"¿Qué tan presente sientes que estás con Elena más allá de la logística?",explain:"La comparación ayuda a ver diferencias, no a culparte.",reverse:true},
+        {id:"h2",type:"scale",area:"hijos",prompt:"¿Qué tan presente sientes que estás con Martín más allá de la logística y los regaños?",explain:"Presencia no es solo estar en la casa.",scaleSet:"presence",scoreReverse:true},
+        {id:"h3",type:"scale",area:"hijos",prompt:"¿Qué tan presente sientes que estás con Elena más allá de la logística?",explain:"La comparación ayuda a ver diferencias, no a culparte.",scaleSet:"presence",scoreReverse:true},
         {id:"h4",type:"multi",area:"hijos",prompt:"¿Qué tiende a pasar más en tu relación con Martín?",explain:"Marca lo que más se parezca a la realidad de hoy.",options:["Choque","Distancia","Corrección constante","Culpa mía","Poca paciencia","Preocupación genuina","No sé cómo llegarle"]},
         {id:"h5",type:"multi",area:"hijos",prompt:"¿Qué función emocional cumple más Elena para ti hoy?",explain:"Esto no la define a ella; ayuda a mirar cómo te vinculas.",options:["Refugio","Alivio","Facilidad","Ternura","Menos conflicto","Compañía","No lo tengo claro"]},
         {id:"h6",type:"text",area:"hijos",prompt:"¿Dónde sientes que les estás fallando más por cansancio o exceso de carga?",explain:"No para atacarte, sino para ubicar dónde haría más diferencia un pequeño cambio."}
@@ -379,11 +406,11 @@
       intro:"Tu cuerpo no solo carga tu vida. También te la cuenta.",
       pedagogy:"Hay personas que no abandonan su bienestar por irresponsables, sino porque viven respondiendo a tanta demanda que se vuelven funcionales hacia afuera y desatendidas hacia adentro.",
       questions:[
-        {id:"a1",type:"scale",area:"autocuidado",prompt:"¿Qué tan descansada te has sentido en la última semana?",explain:"Descansar no es solo dormir. Es sentir que algo en ti se repone.",reverse:true},
-        {id:"a2",type:"scale",area:"autocuidado",prompt:"¿Qué tanto sientes que vives en modo corredera o urgencia?",explain:"Cuando todo es urgente, casi nada se procesa."},
-        {id:"a3",type:"scale",area:"autocuidado",prompt:"¿Cómo te sientes hoy con tu aspecto personal?",explain:"No se trata de gustarle a otros, sino de la relación que hoy tienes con tu imagen."},
+        {id:"a1",type:"scale",area:"autocuidado",prompt:"¿Qué tan descansada te has sentido en la última semana?",explain:"Descansar no es solo dormir. Es sentir que algo en ti se repone.",scaleSet:"rest",scoreReverse:true},
+        {id:"a2",type:"scale",area:"autocuidado",prompt:"¿Qué tanto sientes que vives en modo corredera o urgencia?",explain:"Cuando todo es urgente, casi nada se procesa.",scaleSet:"stress"},
+        {id:"a3",type:"scale",area:"autocuidado",prompt:"¿Cómo te sientes hoy con tu aspecto personal?",explain:"No se trata de gustarle a otros, sino de la relación que hoy tienes con tu imagen.",scaleSet:"image",scoreReverse:true},
         {id:"a4",type:"multi",area:"autocuidado",prompt:"¿Qué has venido descuidando más?",explain:"Marca todo lo que aplique.",options:["Sueño","Comida","Movimiento físico","Chequeos médicos","Tiempo a solas","Espacios agradables","Orden personal","Sexualidad","Descanso mental"]},
-        {id:"a5",type:"scale",area:"autocuidado",prompt:"¿Qué tanto tu autoestima depende todavía de sentirte deseada o elegida por un hombre?",explain:"No para juzgarte, sino para ver cuánto pesa esa fuente externa."},
+        {id:"a5",type:"scale",area:"autocuidado",prompt:"¿Qué tanto tu autoestima depende todavía de sentirte deseada o elegida por un hombre?",explain:"No para juzgarte, sino para ver cuánto pesa esa fuente externa.",scaleSet:"dependency"},
         {id:"a6",type:"text",area:"autocuidado",prompt:"¿Qué parte de tu bienestar sientes que más has sacrificado para poder sostener tu vida actual?",explain:"Nómbrala con crudeza, no con adorno."}
       ]
     },
@@ -393,8 +420,8 @@
       intro:"Mirar el miedo a la soledad sin romantizarlo ni condenarlo.",
       pedagogy:"Tener necesidad de amar no es un problema en sí. El problema aparece cuando el miedo a quedarse sola baja demasiado el filtro, minimiza banderas rojas o convierte la relación en anestesia.",
       questions:[
-        {id:"r1",type:"scale",area:"afectiva",prompt:"¿Qué tan difícil te resulta estar sola sin sentir vacío, angustia o necesidad de llenar ese espacio?",explain:"La soledad no siempre duele por ausencia de pareja; a veces activa viejas heridas."},
-        {id:"r2",type:"scale",area:"afectiva",prompt:"¿Qué tanto sientes que tiendes a ignorar banderas rojas cuando te ilusionas?",explain:"La pregunta no es si las conoces, sino si las dejas pasar."},
+        {id:"r1",type:"scale",area:"afectiva",prompt:"¿Qué tan difícil te resulta estar sola sin sentir vacío, angustia o necesidad de llenar ese espacio?",explain:"La soledad no siempre duele por ausencia de pareja; a veces activa viejas heridas.",scaleSet:"difficulty"},
+        {id:"r2",type:"scale",area:"afectiva",prompt:"¿Qué tanto sientes que tiendes a ignorar banderas rojas cuando te ilusionas?",explain:"La pregunta no es si las conoces, sino si las dejas pasar.",scaleSet:"habit"},
         {id:"r3",type:"multi",area:"afectiva",prompt:"Justo antes de engancharte con alguien, ¿qué pesa más en ti?",explain:"Marca lo que más te describa.",options:["Miedo a quedarme sola","Ilusión","Deseo sexual","Necesidad de sentirme elegida","Ganas de cuidar o rescatar","Sentirme viva otra vez","Tapar un vacío"]},
         {id:"r4",type:"multi",area:"afectiva",prompt:"¿Qué sueles encontrar atractivo en hombres que luego te complican la vida?",explain:"A veces el enganche no está en lo sano, sino en lo familiar o intenso.",options:["Necesitan ayuda","Parecen intensos","Me buscan mucho","Me hacen sentir especial","Se muestran vulnerables","Tienen impulso o ambición","Prometen cambio"]},
         {id:"r5",type:"text",area:"afectiva",prompt:"¿Qué crees que te cuesta tanto de quedarte sin pareja o sin vínculo afectivo?",explain:"Nómbralo sin maquillaje: miedo, vacío, aburrimiento, sensación de fracaso, desamparo…"},
@@ -407,9 +434,9 @@
       intro:"No todo emprendimiento es libertad. A veces también es dispersión, agotamiento y falta de borde.",
       pedagogy:"Ser capaz de mucho no obliga a sostenerlo todo. Una vida puede estar llena de actividad y aun así estar mal organizada para el bienestar.",
       questions:[
-        {id:"t1",type:"scale",area:"trabajo",prompt:"¿Qué tan sobrecargada te sientes por la cantidad de cosas que atiendes?",explain:"No solo por horas, también por cantidad de frentes mentales."},
+        {id:"t1",type:"scale",area:"trabajo",prompt:"¿Qué tan sobrecargada te sientes por la cantidad de cosas que atiendes?",explain:"No solo por horas, también por cantidad de frentes mentales.",scaleSet:"stress"},
         {id:"t2",type:"multi",area:"trabajo",prompt:"¿Dónde sientes hoy el mayor desborde?",explain:"Marca lo que más pesa.",options:["Microempresa familiar","Negocios propios","Temas financieros","Pendientes que nunca terminan","Resolverle a otros","No delegar","Apagar incendios"]},
-        {id:"t3",type:"scale",area:"trabajo",prompt:"¿Qué tan capaz te sientes de soltar, reducir o delegar algo?",explain:"A veces el obstáculo no es técnico, sino emocional.",reverse:true},
+        {id:"t3",type:"scale",area:"trabajo",prompt:"¿Qué tan capaz te sientes de soltar, reducir o delegar algo?",explain:"A veces el obstáculo no es técnico, sino emocional.",scaleSet:"capacity",scoreReverse:true},
         {id:"t4",type:"text",area:"trabajo",prompt:"¿Qué frente sabes que hoy te está costando más de lo que te aporta?",explain:"No hace falta decidir ya qué harás con eso. Primero nómbralo."},
         {id:"t5",type:"text",area:"trabajo",prompt:"Si no intentaras sostenerlo todo, ¿qué tres cosas dejarían de depender tanto de ti?",explain:"Piensa en alivio real, no en fantasía."}
       ]
@@ -420,11 +447,11 @@
       intro:"Mirar el día vivido, no el día ideal.",
       pedagogy:"Muchas personas creen que les falta disciplina cuando en realidad les falta mapa. Sin ver a dónde se va la energía, todo cambio suena abstracto.",
       questions:[
-        {id:"ti1",type:"scale",area:"tiempo",prompt:"¿Qué tan claro tienes hoy a dónde se te va el tiempo y la energía?",explain:"No pregunto si trabajas mucho, sino si ves el mapa.",reverse:true},
+        {id:"ti1",type:"scale",area:"tiempo",prompt:"¿Qué tan claro tienes hoy a dónde se te va el tiempo y la energía?",explain:"No pregunto si trabajas mucho, sino si ves el mapa.",scaleSet:"clarity"},
         {id:"ti2",type:"multi",area:"tiempo",prompt:"¿Dónde sientes más fugas de energía?",explain:"Marca lo que más te drena.",options:["Pensar en demasiadas cosas","Resolver urgencias ajenas","Celular o redes","Desorden","Traslados","Discusión o conflicto","Preocupación constante","No parar nunca"]},
-        {id:"ti3",type:"scale",area:"tiempo",prompt:"¿Qué tanto haces cosas por costumbre o miedo más que por verdadera elección?",explain:"La costumbre también puede ser una cárcel."},
+        {id:"ti3",type:"scale",area:"tiempo",prompt:"¿Qué tanto haces cosas por costumbre o miedo más que por verdadera elección?",explain:"La costumbre también puede ser una cárcel.",scaleSet:"habit"},
         {id:"ti4",type:"text",area:"tiempo",prompt:"¿Qué tarea o hábito podrías reducir esta semana sin que el mundo se caiga?",explain:"Busca algo pequeño pero real."},
-        {id:"ti5",type:"text",area:"tiempo",prompt:"¿Qué parte de tu día casi nunca tiene espacio para ti?",explain:"Nombrar la ausencia ayuda a verla como área de trabajo."}
+        {id:"ti5",type:"text",area:"tiempo",prompt:"¿En qué momento del día casi nunca logras reservar un espacio para ti?",explain:"La idea es ubicar el hueco concreto: mañana, tarde, noche o cualquier otro tramo del día."}
       ]
     },
     {
@@ -434,8 +461,8 @@
       pedagogy:"Tener personas cerca no siempre significa tener apoyo. A veces hay presencia, pero no alivio. O hay ayuda disponible, pero cuesta pedirla.",
       questions:[
         {id:"ap1",type:"text",area:"apoyo",prompt:"¿Quiénes son hoy tus apoyos más reales?",explain:"Piensa en apoyo emocional, práctico, económico o con tus hijos."},
-        {id:"ap2",type:"scale",area:"apoyo",prompt:"¿Qué tan fácil te resulta pedir ayuda concreta?",explain:"No ayuda ideal: ayuda específica y aterrizada.",reverse:true},
-        {id:"ap3",type:"scale",area:"apoyo",prompt:"¿Qué tanto sientes que te acostumbraste a ser la que resuelve?",explain:"A veces eso da identidad, pero también te aísla."},
+        {id:"ap2",type:"scale",area:"apoyo",prompt:"¿Qué tan fácil te resulta pedir ayuda concreta?",explain:"No ayuda ideal: ayuda específica y aterrizada.",scaleSet:"difficulty"},
+        {id:"ap3",type:"scale",area:"apoyo",prompt:"¿Qué tanto sientes que te acostumbraste a ser la que resuelve?",explain:"A veces eso da identidad, pero también te aísla.",scaleSet:"habit"},
         {id:"ap4",type:"text",area:"apoyo",prompt:"¿Qué ayuda necesitas y no estás pidiendo?",explain:"Mientras más concreta, más útil."}
       ]
     },
@@ -445,8 +472,8 @@
       intro:"Mirar tu parte sin desconocer lo injusto que te ha tocado cargar.",
       pedagogy:"Asumir responsabilidad no es culparte de todo. Es distinguir entre lo que te pasó, lo que sigues sosteniendo por miedo y lo que ya podrías empezar a mover.",
       questions:[
-        {id:"c1",type:"scale",area:"responsabilidad",prompt:"¿Qué tanto reconoces que algunos ciclos dolorosos se repiten también por decisiones tuyas, omisiones o miedo?",explain:"No toda repetición es elección consciente, pero verla da margen de cambio."},
-        {id:"c2",type:"scale",area:"responsabilidad",prompt:"¿Qué tanto sientes que tu vida actual se armó alrededor de sobrevivir más que de vivir bien?",explain:"Sobrevivir mucho tiempo también se vuelve costumbre."},
+        {id:"c1",type:"scale",area:"responsabilidad",prompt:"¿Qué tanto reconoces que algunos ciclos dolorosos se repiten también por decisiones tuyas, omisiones o miedo?",explain:"No toda repetición es elección consciente, pero verla da margen de cambio.",scaleSet:"habit"},
+        {id:"c2",type:"scale",area:"responsabilidad",prompt:"¿Qué tanto sientes que tu vida actual se armó alrededor de sobrevivir más que de vivir bien?",explain:"Sobrevivir mucho tiempo también se vuelve costumbre.",scaleSet:"habit"},
         {id:"c3",type:"text",area:"responsabilidad",prompt:"¿Qué beneficio secundario puede tener para ti seguir igual en alguna parte de tu vida?",explain:"A veces seguir igual evita vacío, conflicto, vergüenza o decisiones difíciles."},
         {id:"c4",type:"text",area:"responsabilidad",prompt:"¿Cuál es hoy la verdad incómoda que más te cuesta mirar sobre tu manera de vivir?",explain:"No busques una frase elegante. Busca una frase honesta."}
       ]
@@ -470,6 +497,14 @@
       apoyo:"Red de apoyo",
       responsabilidad:"Responsabilidad y repetición"
     })[k] || k;
+  }
+
+  function getScaleLabels(q){ return genericScaleLabels[q.scaleSet || "base"]; }
+
+  function scoreValue(q, answer){
+    if (q.type === "yesno") return answer;
+    if (q.scoreReverse) return 6 - answer;
+    return answer;
   }
 
   function saveAll(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(APP)); }
@@ -642,12 +677,13 @@
     const answer = APP.currentRun.questionAnswers[q.id];
 
     if (q.type === "scale") {
+      const labels = getScaleLabels(q);
       const scale = document.createElement("div");
       scale.className = "scale";
       [1,2,3,4,5].forEach(n => {
         const b = document.createElement("button");
         b.type = "button";
-        b.innerHTML = `<strong>${n}</strong><br><span class="tiny">${severityLabels[n]}</span>`;
+        b.innerHTML = `<strong>${n}</strong><span class="tiny">${labels[n]}</span>`;
         if (answer === n) b.classList.add("selected");
         b.addEventListener("click", () => {
           APP.currentRun.questionAnswers[q.id] = n;
@@ -797,11 +833,16 @@
       mod.questions.forEach(q => {
         const ans = run.questionAnswers[q.id];
 
-        if (q.type === "scale" || q.type === "yesno") {
-          let val = typeof ans === "number" ? ans : null;
-          if (val !== null) {
-            if (q.reverse) val = 6 - val;
-            sum += val;
+        if (q.type === "scale") {
+          if (typeof ans === "number") {
+            sum += scoreValue(q, ans);
+            count++;
+          }
+        }
+
+        if (q.type === "yesno") {
+          if (typeof ans === "number") {
+            sum += ans;
             count++;
           }
         }
@@ -845,7 +886,7 @@
     [1,2,3,4,5].forEach(n => {
       const b = document.createElement("button");
       b.type = "button";
-      b.innerHTML = `<strong>${n}</strong><br><span class="tiny">${labels[n - 1]}</span>`;
+      b.innerHTML = `<strong>${n}</strong><span class="tiny">${labels[n - 1]}</span>`;
       if ((run.summary.funnel || {}).viability === n) b.classList.add("selected");
       b.addEventListener("click", () => {
         run.summary.funnel = run.summary.funnel || {};
@@ -1103,6 +1144,7 @@
       saveSummaryChoices();
       alert("Embudo guardado.");
     });
+    $("restartBtn").addEventListener("click", () => showScreen("screen-home"));
 
     $("exportBtn").addEventListener("click", exportData);
     $("printBtn").addEventListener("click", () => window.print());

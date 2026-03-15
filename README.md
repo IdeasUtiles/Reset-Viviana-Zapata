@@ -1,21 +1,14 @@
-# Mapa de reinicio de vida - Viviana
+# Reset Viviana Zapata v3
 
-App estática sin backend para GitHub Pages.
+Cambios de esta versión:
+- Se corrigieron las escalas ambiguas para que el texto de respuesta coincida con la lógica de cada pregunta.
+- Se ajustó la pregunta sobre el día para que sea más concreta.
+- Se añadió una explicación de los tres botones en el encuadre.
+- Se añadió un botón para volver al inicio en la pantalla final.
 
-## Incluye
-- Escaneo inicial por módulos cortos
-- Seguimiento semanal o quincenal
-- Guardado local en el navegador
-- Exportación e importación en JSON
-- Informe crítico no interpretativo
-- Comparativas entre registros
-
-## Publicación rápida
-1. Crea un repositorio en GitHub.
-2. Sube `index.html`.
-3. En Settings > Pages, publica desde la rama principal.
-4. Abre la URL desde PC o móvil.
-
-## Limitación técnica
-Como no hay backend, los datos viven en el navegador/dispositivo.
-Para compartir contigo, Viviana debe exportar el JSON o imprimir/guardar el informe en PDF.
+## Cómo actualizar en GitHub
+1. Descarga este ZIP.
+2. Descomprímelo.
+3. Sube `index.html` y `README.md` a tu repositorio, reemplazando los anteriores.
+4. Haz commit.
+5. Espera la publicación de GitHub Pages.
