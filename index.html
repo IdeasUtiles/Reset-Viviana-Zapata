@@ -3,51 +3,184 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mapa de Reinicio - Viviana</title>
+  <title>Reset Viviana Zapata</title>
   <style>
     :root{
-      --bg:#f6f1eb; --card:#fffaf5; --ink:#2e2a27; --muted:#6b625d; --line:#e4d7cb;
-      --accent:#7f4f24; --accent2:#b08968; --shadow:0 10px 30px rgba(0,0,0,.07);
+      --bg:#f6f1eb;
+      --card:#fffaf5;
+      --ink:#2e2a27;
+      --muted:#6b625d;
+      --line:#e4d7cb;
+      --accent:#8a5528;
+      --accent2:#b08968;
+      --shadow:0 10px 30px rgba(0,0,0,.07);
       --radius:18px;
     }
+
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:linear-gradient(180deg,#f7efe8,#f3f3f0); color:var(--ink); line-height:1.45;}
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#f7efe8,#f3f3f0);
+      color:var(--ink);
+      line-height:1.45;
+    }
+
     .wrap{max-width:980px;margin:0 auto;padding:20px 16px 80px}
-    .topbar{position:sticky;top:0;z-index:20;background:rgba(247,239,232,.94);backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--line); margin:0 -16px 18px; padding:10px 16px;}
-    h1,h2,h3{line-height:1.15} h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.2rem 0 .4rem}
-    h2{font-size:1.4rem;margin:0 0 .8rem} h3{font-size:1.05rem;margin:0 0 .55rem}
-    p{margin:.5rem 0} .lead{font-size:1.05rem;color:var(--muted)}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
-      box-shadow:var(--shadow); padding:18px; margin:14px 0;}
-    .grid{display:grid; gap:14px} .grid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .btn{appearance:none;border:none;border-radius:999px;padding:12px 16px;font-weight:700;
-      background:var(--accent);color:white;cursor:pointer;box-shadow:var(--shadow)}
-    .btn.secondary{background:#efe3d6;color:var(--ink)} .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);box-shadow:none}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(247,239,232,.94);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--line);
+      margin:0 -16px 18px;
+      padding:10px 16px;
+    }
+
+    h1,h2,h3{line-height:1.15}
+    h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.2rem 0 .4rem}
+    h2{font-size:1.4rem;margin:0 0 .8rem}
+    h3{font-size:1.05rem;margin:0 0 .55rem}
+    p{margin:.5rem 0}
+
+    .lead{font-size:1.05rem;color:var(--muted)}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+      margin:14px 0;
+    }
+
+    .grid{display:grid;gap:14px}
+    .grid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius:999px;
+      padding:12px 16px;
+      font-weight:700;
+      background:var(--accent);
+      color:#fff;
+      cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+
+    .btn.secondary{background:#efe3d6;color:var(--ink)}
+    .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);box-shadow:none}
     .btn.small{padding:8px 12px;font-size:.92rem}
+
     .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .chip{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border-radius:999px;
-      background:#f1e5d8;border:1px solid var(--line);font-size:.92rem}
-    .muted{color:var(--muted)} .tiny{font-size:.85rem} .hidden{display:none !important}
-    .progress{width:100%;height:10px;background:#eadfd5;border-radius:999px;overflow:hidden}
-    .progress>div{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#f1e5d8;
+      border:1px solid var(--line);
+      font-size:.92rem;
+    }
+
+    .muted{color:var(--muted)}
+    .tiny{font-size:.85rem}
+    .hidden{display:none !important}
+
+    .progress{
+      width:100%;
+      height:10px;
+      background:#eadfd5;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress>div{
+      height:100%;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      width:0%;
+    }
+
     label{display:block;font-weight:650;margin:.65rem 0 .3rem}
-    textarea{width:100%;min-height:108px;resize:vertical;padding:12px 13px;border-radius:12px;border:1px solid #d7c8ba;background:white;font:inherit;color:var(--ink)}
-    .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}
-    .scale button{border:1px solid var(--line);border-radius:14px;padding:12px 8px;background:white;cursor:pointer;color:var(--ink); min-height:58px}
-    .scale button.selected{background:#f3dfcb;border-color:var(--accent);font-weight:700}
-    .note{background:#fff5ea;border-left:5px solid var(--accent2);padding:12px 14px;border-radius:12px;margin:10px 0}
+
+    textarea{
+      width:100%;
+      min-height:108px;
+      resize:vertical;
+      padding:12px 13px;
+      border-radius:12px;
+      border:1px solid #d7c8ba;
+      background:white;
+      font:inherit;
+      color:var(--ink);
+    }
+
+    .scale{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
+      margin-top:8px;
+    }
+
+    .scale button{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 8px;
+      background:white;
+      cursor:pointer;
+      color:var(--ink);
+      min-height:58px;
+    }
+
+    .scale button.selected{
+      background:#f3dfcb;
+      border-color:var(--accent);
+      font-weight:700;
+    }
+
+    .note{
+      background:#fff5ea;
+      border-left:5px solid var(--accent2);
+      padding:12px 14px;
+      border-radius:12px;
+      margin:10px 0;
+    }
+
     .warn{background:#fff0f0;border-left:5px solid #cf5a5a}
+
     .module-list{display:grid;gap:12px}
     .module{border:1px solid var(--line);background:white;border-radius:16px;padding:14px}
     .badge{font-size:.78rem;padding:4px 8px;border-radius:999px;background:#f3e7db}
-    .result-band{border-radius:14px;padding:12px 14px;margin:8px 0;border:1px solid var(--line)}
-    .urgent{background:#fff1ef} .mid{background:#fff8ea} .long{background:#f4f8f2}
+
+    .result-band{
+      border-radius:14px;
+      padding:12px 14px;
+      margin:8px 0;
+      border:1px solid var(--line);
+    }
+
+    .urgent{background:#fff1ef}
+    .mid{background:#fff8ea}
+    .long{background:#f4f8f2}
+
     .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
     .kpi .card{margin:0}
     .knum{font-size:1.8rem;font-weight:800}
-    @media print{.topbar,.actions,.no-print{display:none !important} body{background:white}.wrap{max-width:100%;padding:0}.card{box-shadow:none}}
+
+    .checkline{display:flex;gap:10px;align-items:flex-start;margin:10px 0}
+
+    @media print{
+      .topbar,.actions,.no-print{display:none !important}
+      body{background:#fff}
+      .wrap{max-width:100%;padding:0}
+      .card{box-shadow:none}
+    }
   </style>
 </head>
 <body>
@@ -61,22 +194,36 @@
     <div class="card">
       <span class="chip">Instrumento personal de acompañamiento</span>
       <h1>Mapa de reinicio de vida</h1>
-      <p class="lead">Viviana, esta app no está hecha para juzgarte ni para ponerte nota. Está hecha para ayudarte a mirar con más claridad cómo estás viviendo hoy, qué te está drenando, qué te sostiene y por dónde conviene empezar cambios pequeños, reales y sostenibles.</p>
-      <div class="note"><strong>Encuadre.</strong> Este instrumento forma parte de tu proceso de acompañamiento con Sergio. Tus respuestas están pensadas para ayudarte a ti y también para poder revisarlas dentro del proceso terapéutico. La app funciona sin backend: la información se guarda en este dispositivo, y tú puedes exportarla para compartirla en sesión.</div>
+      <p class="lead">
+        Viviana, hice esta app para ti. No está hecha para juzgarte ni para ponerte nota.
+        Está hecha para ayudarte a mirar con más claridad cómo estás viviendo hoy,
+        qué te está drenando, qué te sostiene y por dónde conviene empezar cambios pequeños,
+        reales y sostenibles.
+      </p>
+
+      <div class="note">
+        <strong>Encuadre.</strong>
+        Esta herramienta hace parte de mi acompañamiento contigo. Tus respuestas están pensadas
+        para ayudarte a ti y también para que podamos revisarlas juntas en el proceso.
+        La app funciona sin backend: la información se guarda en este dispositivo y puedes
+        exportarla para compartirla conmigo en sesión.
+      </div>
+
       <div class="grid two">
         <div class="card">
           <h3>Qué vas a encontrar aquí</h3>
           <p>Un escaneo inicial por módulos cortos, un seguimiento periódico, un informe crítico no interpretativo y un primer plan de microcambios.</p>
         </div>
         <div class="card">
-          <h3>Cómo responder mejor</h3>
-          <p>No respondas bonito. Responde útil. La sinceridad aquí vale más que la imagen. Este mapa no busca culpables; busca palancas de cambio.</p>
+          <h3>Cómo te conviene responder</h3>
+          <p>No respondas bonito. Respóndeme útil. Aquí vale más la sinceridad que la imagen. Este mapa no busca culpables; busca palancas de cambio.</p>
         </div>
       </div>
+
       <div class="actions">
-        <button class="btn" onclick="startInitial()">Empezar escaneo inicial</button>
-        <button class="btn secondary" onclick="startCheckin()">Hacer seguimiento</button>
-        <button class="btn ghost" onclick="showScreen('screen-history')">Ver comparativas</button>
+        <button class="btn" id="startInitialBtn">Empezar escaneo inicial</button>
+        <button class="btn secondary" id="startCheckinBtn">Hacer seguimiento</button>
+        <button class="btn ghost" id="historyBtn">Ver comparativas</button>
       </div>
     </div>
 
@@ -93,11 +240,13 @@
       <p class="muted" id="moduleIntro"></p>
       <div class="note" id="modulePedagogy"></div>
     </div>
+
     <div id="questionHost"></div>
+
     <div class="actions">
-      <button class="btn secondary" onclick="prevQuestion()">Atrás</button>
-      <button class="btn" onclick="nextQuestion()">Siguiente</button>
-      <button class="btn ghost" onclick="showScreen('screen-home');saveAll()">Salir al inicio</button>
+      <button class="btn secondary" id="prevBtn">Atrás</button>
+      <button class="btn" id="nextBtn">Siguiente</button>
+      <button class="btn ghost" id="homeBtn">Salir al inicio</button>
     </div>
   </section>
 
@@ -105,34 +254,49 @@
     <div class="card">
       <span class="chip">Informe crítico no interpretativo</span>
       <h2>Tu mapa actual</h2>
-      <p class="lead">Esto no resume quién eres. Resume dónde parece estar hoy la mayor presión, qué zonas piden atención urgente y dónde hay posibilidades concretas de alivio.</p>
+      <p class="lead">
+        Esto no resume quién eres. Resume dónde parece estar hoy la mayor presión,
+        qué zonas piden atención urgente y dónde hay posibilidades concretas de alivio.
+      </p>
       <div class="kpi" id="kpis"></div>
     </div>
-    <div class="card"><h3>Áreas críticas</h3><div id="bands"></div></div>
+
+    <div class="card">
+      <h3>Áreas críticas</h3>
+      <div id="bands"></div>
+    </div>
+
     <div class="card">
       <h3>Primer plan de microcambios</h3>
       <p class="muted">El objetivo no es cambiarlo todo. Es empezar por lo que más pesa y sí se puede mover.</p>
       <div id="microPlan"></div>
     </div>
+
     <div class="card">
       <h3>Embudo final</h3>
       <label>De todo lo que viste, ¿qué es hoy lo más prioritario que debes abordar?</label>
       <textarea id="priorityField" placeholder="Nómbralo de la forma más concreta posible."></textarea>
+
       <label>¿Qué tan viable ves hacer un cambio en esa área durante las próximas 2 semanas?</label>
       <div class="scale" id="priorityScale"></div>
+
       <label>¿Cuál sería el paso más pequeño, realista y honesto?</label>
       <textarea id="smallStepField" placeholder="Algo pequeño, medible y posible."></textarea>
-      <div class="actions"><button class="btn" onclick="saveSummaryChoices()">Guardar embudo</button></div>
+
+      <div class="actions">
+        <button class="btn" id="saveFunnelBtn">Guardar embudo</button>
+      </div>
     </div>
+
     <div class="card">
       <h3>Exportar / compartir</h3>
-      <p class="muted">Puedes exportar este proceso para revisarlo con Sergio o guardarlo como respaldo.</p>
+      <p class="muted">Puedes exportar este proceso para revisarlo conmigo o guardarlo como respaldo.</p>
       <div class="actions">
-        <button class="btn secondary" onclick="exportData()">Exportar JSON</button>
-        <button class="btn secondary" onclick="window.print()">Imprimir / guardar PDF</button>
+        <button class="btn secondary" id="exportBtn">Exportar JSON</button>
+        <button class="btn secondary" id="printBtn">Imprimir / guardar PDF</button>
         <label class="btn ghost small" for="importFile">Importar JSON</label>
-        <input id="importFile" type="file" accept="application/json" class="hidden" onchange="importData(event)" />
-        <button class="btn ghost" onclick="showScreen('screen-history')">Ver comparativas</button>
+        <input id="importFile" type="file" accept="application/json" class="hidden" />
+        <button class="btn ghost" id="summaryHistoryBtn">Ver comparativas</button>
       </div>
     </div>
   </section>
@@ -142,123 +306,825 @@
       <h2>Comparativas y seguimiento</h2>
       <p class="muted">Aquí puedes ver tus registros guardados. La idea no es vigilarte: es observar tendencias.</p>
       <div id="historyHost"></div>
-      <div class="actions"><button class="btn secondary" onclick="showScreen('screen-home')">Volver al inicio</button></div>
+      <div class="actions">
+        <button class="btn secondary" id="backHomeBtn">Volver al inicio</button>
+      </div>
     </div>
   </section>
 </div>
 
 <script>
-const STORAGE_KEY='viviana_reset_app_v1';
-const APP={runs:[],currentRun:null,flow:'initial',moduleIndex:0,questionIndex:0};
-const severityLabels={1:'Muy bajo / muy bien',2:'Bajo',3:'Intermedio',4:'Alto',5:'Muy alto / muy mal'};
-const followupChoices=[['Más organizada','Más organizada'],['Con altibajos','Con altibajos'],['Vuelvo a lo mismo','Vuelvo a lo mismo'],['Muy sobrepasada','Muy sobrepasada'],['Sin rumbo','Sin rumbo']];
+(() => {
+  const STORAGE_KEY = "viviana_reset_app_v2";
+  const severityLabels = {1:"Muy bajo / muy bien",2:"Bajo",3:"Intermedio",4:"Alto",5:"Muy alto / muy mal"};
+  const followupChoices = ["Más organizada","Con altibajos","Vuelvo a lo mismo","Muy sobrepasada","Sin rumbo"];
 
-const modules=[
-{key:'seguridad',title:'Seguridad, estabilidad y señales de alerta',intro:'Antes de hablar de cambios, toca mirar si hay algo urgente que proteger.',pedagogy:'A veces una persona tiene muy claro lo que no quiere repetir, pero aun así sigue emocionalmente expuesta. Esta parte no es para asustarte: es para ver si hay algún riesgo que no conviene minimizar.',questions:[
-{id:'s1',type:'scale',area:'seguridad',prompt:'Hoy, ¿qué tan segura te sientes emocional y físicamente en tu vida actual?',explain:'No se trata solo de peligro físico. También cuenta sentirte invadida, perseguida, manipulada o sin piso.',reverse:true},
-{id:'s2',type:'yesno',area:'seguridad',prompt:'¿Hay alguna persona con la que sientas que debes poner distancia, límites o protección adicional?',explain:'A veces una ruptura terminó en teoría, pero no del todo en la práctica.'},
-{id:'s3',type:'scale',area:'seguridad',prompt:'¿Qué tan atrapada te sientes en este momento de tu vida?',explain:'Sentirse atrapada no significa incapacidad. Significa que hoy la carga te supera o te reduce margen de maniobra.'},
-{id:'s4',type:'multi',area:'seguridad',prompt:'Cuando estás al límite, ¿qué se activa más en ti?',explain:'Esto ayuda a identificar tu forma de colapsar, no a etiquetarte.',options:['Llanto o derrumbe','Rabia o explosión','Trabajar más y no parar','Aislarme','Buscar compañía afectiva','Comer más','Sentir que no puedo con todo']},
-{id:'s5',type:'text',area:'seguridad',prompt:'¿Qué situación te preocupa más en este momento?',explain:'Nómbrala claro. Lo difuso pesa más.'}
-]},
-{key:'madre',title:'Madre, familia y poder de opinión',intro:'Mirar el vínculo con quien te ha sostenido, pero también te ha marcado.',pedagogy:'No todo apoyo fortalece del mismo modo. Hay ayudas que sostienen y ayudas que, al mismo tiempo, dejan deuda emocional, culpa o sensación de insuficiencia.',questions:[
-{id:'m1',type:'scale',area:'madre',prompt:'¿Qué tanto influye hoy la opinión de tu madre en tus decisiones?',explain:'Aunque decidas distinto, puede seguir pesando por dentro.'},
-{id:'m2',type:'scale',area:'madre',prompt:'¿Qué tan criticada o inadecuada te sigues sintiendo frente a ella?',explain:'No preguntamos si te critica objetivamente, sino cómo te queda resonando.'},
-{id:'m3',type:'scale',area:'madre',prompt:'¿Qué tan difícil te resulta sostener una decisión tuya cuando sabes que a tu madre no le gustará?',explain:'Aquí se ve el costo emocional de diferenciarte.'},
-{id:'m4',type:'multi',area:'madre',prompt:'¿Qué papel sientes que ocupas más en tu familia?',explain:'Escoge los que más se te pegan.',options:['La fuerte','La que resuelve','La que sostiene económicamente','La hija que debe responder','La mediadora','La que intenta quedar bien','La que termina peleando por poner límites']},
-{id:'m5',type:'text',area:'madre',prompt:'¿Qué límite con tu madre sabes que necesitas, pero todavía no logras sostener?',explain:'Un límite útil es concreto: sobre qué, cuándo y cómo.'}
-]},
-{key:'economia',title:'Manejo económico y estilo de vida',intro:'No para llevar contabilidad aquí, sino para mirar si la vida que sostienes ya te está costando demasiado.',pedagogy:'No todo problema económico es gastar de más. A veces el problema es sostener demasiados frentes, demasiadas responsabilidades y demasiada tensión mental al mismo tiempo.',questions:[
-{id:'e1',type:'scale',area:'economia',prompt:'¿Qué tan desbordada te sientes por la carga económica total que sostienes?',explain:'Incluye hijos, deudas, negocios, obligaciones familiares y presión mental.'},
-{id:'e2',type:'scale',area:'economia',prompt:'¿Qué tan claro tienes hoy tu déficit o margen real mensual?',explain:'No necesitas poner cifras aquí. Solo ver si lo tienes claro o si operas en neblina.',reverse:true},
-{id:'e3',type:'multi',area:'economia',prompt:'¿Qué cosas están pesando más hoy en tu economía?',explain:'Marca todo lo que aplique.',options:['Gastos de los hijos','Deudas de pareja pasada','Préstamos o inversiones','Microempresa familiar','Negocios propios','Ayudas a terceros','Sostener demasiados frentes a la vez']},
-{id:'e4',type:'scale',area:'economia',prompt:'¿Qué tanto miedo te da bajar el ritmo, reducir algo o reorganizar tu estilo de vida?',explain:'A veces el problema no es solo la carga, sino el miedo a tocar la estructura actual.'},
-{id:'e5',type:'text',area:'economia',prompt:'Por fuera de esta app, revisa tus números. Aquí solo escribe: ¿cuál es hoy tu sensación real frente a la relación entre lo que entra y lo que sale?',explain:'Puedes responder algo como: entra menos de lo que necesito, o estoy pagando todo pero a un costo demasiado alto.'}
-]},
-{key:'hijos',title:'Relación con tus hijos y presencia real',intro:'No para evaluarte como madre, sino para ver dónde hay preocupación, distancia o deuda de presencia.',pedagogy:'Una madre puede amar muchísimo y aun así estar tan sobrecargada que termina disponible solo en modo logística, corrección o urgencia.',questions:[
-{id:'h1',type:'text',area:'hijos',prompt:'¿Qué es lo que más te preocupa hoy de tu relación con tus hijos?',explain:'Nombra lo principal, no lo políticamente correcto.'},
-{id:'h2',type:'scale',area:'hijos',prompt:'¿Qué tan presente sientes que estás con Martín más allá de la logística y los regaños?',explain:'Presencia no es solo estar en la casa.',reverse:true},
-{id:'h3',type:'scale',area:'hijos',prompt:'¿Qué tan presente sientes que estás con Elena más allá de la logística?',explain:'La comparación ayuda a ver diferencias, no a culparte.',reverse:true},
-{id:'h4',type:'multi',area:'hijos',prompt:'¿Qué tiende a pasar más en tu relación con Martín?',explain:'Marca lo que más se parezca a la realidad de hoy.',options:['Choque','Distancia','Corrección constante','Culpa mía','Poca paciencia','Preocupación genuina','No sé cómo llegarle']},
-{id:'h5',type:'multi',area:'hijos',prompt:'¿Qué función emocional cumple más Elena para ti hoy?',explain:'Esto no la define a ella; ayuda a mirar cómo te vinculas.',options:['Refugio','Alivio','Facilidad','Ternura','Menos conflicto','Compañía','No lo tengo claro']},
-{id:'h6',type:'text',area:'hijos',prompt:'¿Dónde sientes que les estás fallando más por cansancio o exceso de carga?',explain:'No para atacarte, sino para ubicar dónde haría más diferencia un pequeño cambio.'}
-]},
-{key:'autocuidado',title:'Autocuidado, cuerpo y energía',intro:'Tu cuerpo no solo carga tu vida. También te la cuenta.',pedagogy:'Hay personas que no abandonan su bienestar por irresponsables, sino porque viven respondiendo a tanta demanda que se vuelven funcionales hacia afuera y desatendidas hacia adentro.',questions:[
-{id:'a1',type:'scale',area:'autocuidado',prompt:'¿Qué tan descansada te has sentido en la última semana?',explain:'Descansar no es solo dormir. Es sentir que algo en ti se repone.',reverse:true},
-{id:'a2',type:'scale',area:'autocuidado',prompt:'¿Qué tanto sientes que vives en modo corredera o urgencia?',explain:'Cuando todo es urgente, casi nada se procesa.'},
-{id:'a3',type:'scale',area:'autocuidado',prompt:'¿Cómo te sientes hoy con tu aspecto personal?',explain:'No se trata de gustarle a otros, sino de la relación que hoy tienes con tu imagen.'},
-{id:'a4',type:'multi',area:'autocuidado',prompt:'¿Qué has venido descuidando más?',explain:'Marca todo lo que aplique.',options:['Sueño','Comida','Movimiento físico','Chequeos médicos','Tiempo a solas','Espacios agradables','Orden personal','Sexualidad','Descanso mental']},
-{id:'a5',type:'scale',area:'autocuidado',prompt:'¿Qué tanto tu autoestima depende todavía de sentirte deseada o elegida por un hombre?',explain:'No para juzgarte, sino para ver cuánto pesa esa fuente externa.'},
-{id:'a6',type:'text',area:'autocuidado',prompt:'¿Qué parte de tu bienestar sientes que más has sacrificado para poder sostener tu vida actual?',explain:'Nómbrala con crudeza, no con adorno.'}
-]},
-{key:'afectiva',title:'Soledad, hombres y patrón afectivo',intro:'Mirar el miedo a la soledad sin romantizarlo ni condenarlo.',pedagogy:'Tener necesidad de amar no es un problema en sí. El problema aparece cuando el miedo a quedarse sola baja demasiado el filtro, minimiza banderas rojas o convierte la relación en anestesia.',questions:[
-{id:'r1',type:'scale',area:'afectiva',prompt:'¿Qué tan difícil te resulta estar sola sin sentir vacío, angustia o necesidad de llenar ese espacio?',explain:'La soledad no siempre duele por ausencia de pareja; a veces activa viejas heridas.'},
-{id:'r2',type:'scale',area:'afectiva',prompt:'¿Qué tanto sientes que tiendes a ignorar banderas rojas cuando te ilusionas?',explain:'La pregunta no es si las conoces, sino si las dejas pasar.'},
-{id:'r3',type:'multi',area:'afectiva',prompt:'Justo antes de engancharte con alguien, ¿qué pesa más en ti?',explain:'Marca lo que más te describa.',options:['Miedo a quedarme sola','Ilusión','Deseo sexual','Necesidad de sentirme elegida','Ganas de cuidar o rescatar','Sentirme viva otra vez','Tapar un vacío']},
-{id:'r4',type:'multi',area:'afectiva',prompt:'¿Qué sueles encontrar atractivo en hombres que luego te complican la vida?',explain:'A veces el enganche no está en lo sano, sino en lo familiar o intenso.',options:['Necesitan ayuda','Parecen intensos','Me buscan mucho','Me hacen sentir especial','Se muestran vulnerables','Tienen impulso o ambición','Prometen cambio']},
-{id:'r5',type:'text',area:'afectiva',prompt:'¿Qué crees que te cuesta tanto de quedarte sin pareja o sin vínculo afectivo?',explain:'Nómbralo sin maquillaje: miedo, vacío, aburrimiento, sensación de fracaso, desamparo…'},
-{id:'r6',type:'text',area:'afectiva',prompt:'¿Qué ganas y qué pierdes cuando te metes en una relación que pide demasiado de ti?',explain:'Pon ambos lados. El costo se entiende mejor cuando también se ve el beneficio.'}
-]},
-{key:'trabajo',title:'Trabajo, negocios y exceso de frentes',intro:'No todo emprendimiento es libertad. A veces también es dispersión, agotamiento y falta de borde.',pedagogy:'Ser capaz de mucho no obliga a sostenerlo todo. Una vida puede estar llena de actividad y aun así estar mal organizada para el bienestar.',questions:[
-{id:'t1',type:'scale',area:'trabajo',prompt:'¿Qué tan sobrecargada te sientes por la cantidad de cosas que atiendes?',explain:'No solo por horas, también por cantidad de frentes mentales.'},
-{id:'t2',type:'multi',area:'trabajo',prompt:'¿Dónde sientes hoy el mayor desborde?',explain:'Marca lo que más pesa.',options:['Microempresa familiar','Negocios propios','Temas financieros','Pendientes que nunca terminan','Resolverle a otros','No delegar','Apagar incendios']},
-{id:'t3',type:'scale',area:'trabajo',prompt:'¿Qué tan capaz te sientes de soltar, reducir o delegar algo?',explain:'A veces el obstáculo no es técnico, sino emocional.',reverse:true},
-{id:'t4',type:'text',area:'trabajo',prompt:'¿Qué frente sabes que hoy te está costando más de lo que te aporta?',explain:'No hace falta decidir ya qué harás con eso. Primero nómbralo.'},
-{id:'t5',type:'text',area:'trabajo',prompt:'Si no intentaras sostenerlo todo, ¿qué tres cosas dejarían de depender tanto de ti?',explain:'Piensa en alivio real, no en fantasía.'}
-]},
-{key:'tiempo',title:'Tiempo real, organización y fugas de energía',intro:'Mirar el día vivido, no el día ideal.',pedagogy:'Muchas personas creen que les falta disciplina cuando en realidad les falta mapa. Sin ver a dónde se va la energía, todo cambio suena abstracto.',questions:[
-{id:'ti1',type:'scale',area:'tiempo',prompt:'¿Qué tan claro tienes hoy a dónde se te va el tiempo y la energía?',explain:'No pregunto si trabajas mucho, sino si ves el mapa.',reverse:true},
-{id:'ti2',type:'multi',area:'tiempo',prompt:'¿Dónde sientes más fugas de energía?',explain:'Marca lo que más te drena.',options:['Pensar en demasiadas cosas','Resolver urgencias ajenas','Celular o redes','Desorden','Traslados','Discusión o conflicto','Preocupación constante','No parar nunca']},
-{id:'ti3',type:'scale',area:'tiempo',prompt:'¿Qué tanto haces cosas por costumbre o miedo más que por verdadera elección?',explain:'La costumbre también puede ser una cárcel.'},
-{id:'ti4',type:'text',area:'tiempo',prompt:'¿Qué tarea o hábito podrías reducir esta semana sin que el mundo se caiga?',explain:'Busca algo pequeño pero real.'},
-{id:'ti5',type:'text',area:'tiempo',prompt:'¿Qué parte de tu día casi nunca tiene espacio para ti?',explain:'Nombrar la ausencia ayuda a verla como área de trabajo.'}
-]},
-{key:'apoyo',title:'Red de apoyo, ayuda y carga compartida',intro:'Ver si realmente estás acompañada o solo rodeada de gente.',pedagogy:'Tener personas cerca no siempre significa tener apoyo. A veces hay presencia, pero no alivio. O hay ayuda disponible, pero cuesta pedirla.',questions:[
-{id:'ap1',type:'text',area:'apoyo',prompt:'¿Quiénes son hoy tus apoyos más reales?',explain:'Piensa en apoyo emocional, práctico, económico o con tus hijos.'},
-{id:'ap2',type:'scale',area:'apoyo',prompt:'¿Qué tan fácil te resulta pedir ayuda concreta?',explain:'No ayuda ideal: ayuda específica y aterrizada.',reverse:true},
-{id:'ap3',type:'scale',area:'apoyo',prompt:'¿Qué tanto sientes que te acostumbraste a ser la que resuelve?',explain:'A veces eso da identidad, pero también te aísla.'},
-{id:'ap4',type:'text',area:'apoyo',prompt:'¿Qué ayuda necesitas y no estás pidiendo?',explain:'Mientras más concreta, más útil.'}
-]},
-{key:'responsabilidad',title:'Responsabilidad, repetición y posibilidad de cambio',intro:'Mirar tu parte sin desconocer lo injusto que te ha tocado cargar.',pedagogy:'Asumir responsabilidad no es culparte de todo. Es distinguir entre lo que te pasó, lo que sigues sosteniendo por miedo y lo que ya podrías empezar a mover.',questions:[
-{id:'c1',type:'scale',area:'responsabilidad',prompt:'¿Qué tanto reconoces que algunos ciclos dolorosos se repiten también por decisiones tuyas, omisiones o miedo?',explain:'No toda repetición es elección consciente, pero verla da margen de cambio.'},
-{id:'c2',type:'scale',area:'responsabilidad',prompt:'¿Qué tanto sientes que tu vida actual se armó alrededor de sobrevivir más que de vivir bien?',explain:'Sobrevivir mucho tiempo también se vuelve costumbre.'},
-{id:'c3',type:'text',area:'responsabilidad',prompt:'¿Qué beneficio secundario puede tener para ti seguir igual en alguna parte de tu vida?',explain:'A veces seguir igual evita vacío, conflicto, vergüenza o decisiones difíciles.'},
-{id:'c4',type:'text',area:'responsabilidad',prompt:'¿Cuál es hoy la verdad incómoda que más te cuesta mirar sobre tu manera de vivir?',explain:'No busques una frase elegante. Busca una frase honesta.'}
-]}
-];
+  const modules = [
+    {
+      key:"seguridad",
+      title:"Seguridad, estabilidad y señales de alerta",
+      intro:"Antes de hablar de cambios, toca mirar si hay algo urgente que proteger.",
+      pedagogy:"A veces una persona tiene muy claro lo que no quiere repetir, pero aun así sigue emocionalmente expuesta. Esta parte no es para asustarte: es para ver si hay algún riesgo que no conviene minimizar.",
+      questions:[
+        {id:"s1",type:"scale",area:"seguridad",prompt:"Hoy, ¿qué tan segura te sientes emocional y físicamente en tu vida actual?",explain:"No se trata solo de peligro físico. También cuenta sentirte invadida, perseguida, manipulada o sin piso.",reverse:true},
+        {id:"s2",type:"yesno",area:"seguridad",prompt:"¿Hay alguna persona con la que sientas que debes poner distancia, límites o protección adicional?",explain:"A veces una ruptura terminó en teoría, pero no del todo en la práctica."},
+        {id:"s3",type:"scale",area:"seguridad",prompt:"¿Qué tan atrapada te sientes en este momento de tu vida?",explain:"Sentirse atrapada no significa incapacidad. Significa que hoy la carga te supera o te reduce margen de maniobra."},
+        {id:"s4",type:"multi",area:"seguridad",prompt:"Cuando estás al límite, ¿qué se activa más en ti?",explain:"Esto ayuda a identificar tu forma de colapsar, no a etiquetarte.",options:["Llanto o derrumbe","Rabia o explosión","Trabajar más y no parar","Aislarme","Buscar compañía afectiva","Comer más","Sentir que no puedo con todo"]},
+        {id:"s5",type:"text",area:"seguridad",prompt:"¿Qué situación te preocupa más en este momento?",explain:"Nómbrala claro. Lo difuso pesa más."}
+      ]
+    },
+    {
+      key:"madre",
+      title:"Madre, familia y poder de opinión",
+      intro:"Mirar el vínculo con quien te ha sostenido, pero también te ha marcado.",
+      pedagogy:"No todo apoyo fortalece del mismo modo. Hay ayudas que sostienen y ayudas que, al mismo tiempo, dejan deuda emocional, culpa o sensación de insuficiencia.",
+      questions:[
+        {id:"m1",type:"scale",area:"madre",prompt:"¿Qué tanto influye hoy la opinión de tu madre en tus decisiones?",explain:"Aunque decidas distinto, puede seguir pesando por dentro."},
+        {id:"m2",type:"scale",area:"madre",prompt:"¿Qué tan criticada o inadecuada te sigues sintiendo frente a ella?",explain:"No pregunto si te critica objetivamente, sino cómo te queda resonando."},
+        {id:"m3",type:"scale",area:"madre",prompt:"¿Qué tan difícil te resulta sostener una decisión tuya cuando sabes que a tu madre no le gustará?",explain:"Aquí se ve el costo emocional de diferenciarte."},
+        {id:"m4",type:"multi",area:"madre",prompt:"¿Qué papel sientes que ocupas más en tu familia?",explain:"Escoge los que más se te pegan.",options:["La fuerte","La que resuelve","La que sostiene económicamente","La hija que debe responder","La mediadora","La que intenta quedar bien","La que termina peleando por poner límites"]},
+        {id:"m5",type:"text",area:"madre",prompt:"¿Qué límite con tu madre sabes que necesitas, pero todavía no logras sostener?",explain:"Un límite útil es concreto: sobre qué, cuándo y cómo."}
+      ]
+    },
+    {
+      key:"economia",
+      title:"Manejo económico y estilo de vida",
+      intro:"No para llevar contabilidad aquí, sino para mirar si la vida que sostienes ya te está costando demasiado.",
+      pedagogy:"No todo problema económico es gastar de más. A veces el problema es sostener demasiados frentes, demasiadas responsabilidades y demasiada tensión mental al mismo tiempo.",
+      questions:[
+        {id:"e1",type:"scale",area:"economia",prompt:"¿Qué tan desbordada te sientes por la carga económica total que sostienes?",explain:"Incluye hijos, deudas, negocios, obligaciones familiares y presión mental."},
+        {id:"e2",type:"scale",area:"economia",prompt:"¿Qué tan claro tienes hoy tu déficit o margen real mensual?",explain:"No necesitas poner cifras aquí. Solo ver si lo tienes claro o si operas en neblina.",reverse:true},
+        {id:"e3",type:"multi",area:"economia",prompt:"¿Qué cosas están pesando más hoy en tu economía?",explain:"Marca todo lo que aplique.",options:["Gastos de los hijos","Deudas de pareja pasada","Préstamos o inversiones","Microempresa familiar","Negocios propios","Ayudas a terceros","Sostener demasiados frentes a la vez"]},
+        {id:"e4",type:"scale",area:"economia",prompt:"¿Qué tanto miedo te da bajar el ritmo, reducir algo o reorganizar tu estilo de vida?",explain:"A veces el problema no es solo la carga, sino el miedo a tocar la estructura actual."},
+        {id:"e5",type:"text",area:"economia",prompt:"Por fuera de esta app, revisa tus números. Aquí solo escribe: ¿cuál es hoy tu sensación real frente a la relación entre lo que entra y lo que sale?",explain:"Puedes responder algo como: entra menos de lo que necesito, o estoy pagando todo pero a un costo demasiado alto."}
+      ]
+    },
+    {
+      key:"hijos",
+      title:"Relación con tus hijos y presencia real",
+      intro:"No para evaluarte como madre, sino para ver dónde hay preocupación, distancia o deuda de presencia.",
+      pedagogy:"Una madre puede amar muchísimo y aun así estar tan sobrecargada que termina disponible solo en modo logística, corrección o urgencia.",
+      questions:[
+        {id:"h1",type:"text",area:"hijos",prompt:"¿Qué es lo que más te preocupa hoy de tu relación con tus hijos?",explain:"Nombra lo principal, no lo políticamente correcto."},
+        {id:"h2",type:"scale",area:"hijos",prompt:"¿Qué tan presente sientes que estás con Martín más allá de la logística y los regaños?",explain:"Presencia no es solo estar en la casa.",reverse:true},
+        {id:"h3",type:"scale",area:"hijos",prompt:"¿Qué tan presente sientes que estás con Elena más allá de la logística?",explain:"La comparación ayuda a ver diferencias, no a culparte.",reverse:true},
+        {id:"h4",type:"multi",area:"hijos",prompt:"¿Qué tiende a pasar más en tu relación con Martín?",explain:"Marca lo que más se parezca a la realidad de hoy.",options:["Choque","Distancia","Corrección constante","Culpa mía","Poca paciencia","Preocupación genuina","No sé cómo llegarle"]},
+        {id:"h5",type:"multi",area:"hijos",prompt:"¿Qué función emocional cumple más Elena para ti hoy?",explain:"Esto no la define a ella; ayuda a mirar cómo te vinculas.",options:["Refugio","Alivio","Facilidad","Ternura","Menos conflicto","Compañía","No lo tengo claro"]},
+        {id:"h6",type:"text",area:"hijos",prompt:"¿Dónde sientes que les estás fallando más por cansancio o exceso de carga?",explain:"No para atacarte, sino para ubicar dónde haría más diferencia un pequeño cambio."}
+      ]
+    },
+    {
+      key:"autocuidado",
+      title:"Autocuidado, cuerpo y energía",
+      intro:"Tu cuerpo no solo carga tu vida. También te la cuenta.",
+      pedagogy:"Hay personas que no abandonan su bienestar por irresponsables, sino porque viven respondiendo a tanta demanda que se vuelven funcionales hacia afuera y desatendidas hacia adentro.",
+      questions:[
+        {id:"a1",type:"scale",area:"autocuidado",prompt:"¿Qué tan descansada te has sentido en la última semana?",explain:"Descansar no es solo dormir. Es sentir que algo en ti se repone.",reverse:true},
+        {id:"a2",type:"scale",area:"autocuidado",prompt:"¿Qué tanto sientes que vives en modo corredera o urgencia?",explain:"Cuando todo es urgente, casi nada se procesa."},
+        {id:"a3",type:"scale",area:"autocuidado",prompt:"¿Cómo te sientes hoy con tu aspecto personal?",explain:"No se trata de gustarle a otros, sino de la relación que hoy tienes con tu imagen."},
+        {id:"a4",type:"multi",area:"autocuidado",prompt:"¿Qué has venido descuidando más?",explain:"Marca todo lo que aplique.",options:["Sueño","Comida","Movimiento físico","Chequeos médicos","Tiempo a solas","Espacios agradables","Orden personal","Sexualidad","Descanso mental"]},
+        {id:"a5",type:"scale",area:"autocuidado",prompt:"¿Qué tanto tu autoestima depende todavía de sentirte deseada o elegida por un hombre?",explain:"No para juzgarte, sino para ver cuánto pesa esa fuente externa."},
+        {id:"a6",type:"text",area:"autocuidado",prompt:"¿Qué parte de tu bienestar sientes que más has sacrificado para poder sostener tu vida actual?",explain:"Nómbrala con crudeza, no con adorno."}
+      ]
+    },
+    {
+      key:"afectiva",
+      title:"Soledad, hombres y patrón afectivo",
+      intro:"Mirar el miedo a la soledad sin romantizarlo ni condenarlo.",
+      pedagogy:"Tener necesidad de amar no es un problema en sí. El problema aparece cuando el miedo a quedarse sola baja demasiado el filtro, minimiza banderas rojas o convierte la relación en anestesia.",
+      questions:[
+        {id:"r1",type:"scale",area:"afectiva",prompt:"¿Qué tan difícil te resulta estar sola sin sentir vacío, angustia o necesidad de llenar ese espacio?",explain:"La soledad no siempre duele por ausencia de pareja; a veces activa viejas heridas."},
+        {id:"r2",type:"scale",area:"afectiva",prompt:"¿Qué tanto sientes que tiendes a ignorar banderas rojas cuando te ilusionas?",explain:"La pregunta no es si las conoces, sino si las dejas pasar."},
+        {id:"r3",type:"multi",area:"afectiva",prompt:"Justo antes de engancharte con alguien, ¿qué pesa más en ti?",explain:"Marca lo que más te describa.",options:["Miedo a quedarme sola","Ilusión","Deseo sexual","Necesidad de sentirme elegida","Ganas de cuidar o rescatar","Sentirme viva otra vez","Tapar un vacío"]},
+        {id:"r4",type:"multi",area:"afectiva",prompt:"¿Qué sueles encontrar atractivo en hombres que luego te complican la vida?",explain:"A veces el enganche no está en lo sano, sino en lo familiar o intenso.",options:["Necesitan ayuda","Parecen intensos","Me buscan mucho","Me hacen sentir especial","Se muestran vulnerables","Tienen impulso o ambición","Prometen cambio"]},
+        {id:"r5",type:"text",area:"afectiva",prompt:"¿Qué crees que te cuesta tanto de quedarte sin pareja o sin vínculo afectivo?",explain:"Nómbralo sin maquillaje: miedo, vacío, aburrimiento, sensación de fracaso, desamparo…"},
+        {id:"r6",type:"text",area:"afectiva",prompt:"¿Qué ganas y qué pierdes cuando te metes en una relación que pide demasiado de ti?",explain:"Pon ambos lados. El costo se entiende mejor cuando también se ve el beneficio."}
+      ]
+    },
+    {
+      key:"trabajo",
+      title:"Trabajo, negocios y exceso de frentes",
+      intro:"No todo emprendimiento es libertad. A veces también es dispersión, agotamiento y falta de borde.",
+      pedagogy:"Ser capaz de mucho no obliga a sostenerlo todo. Una vida puede estar llena de actividad y aun así estar mal organizada para el bienestar.",
+      questions:[
+        {id:"t1",type:"scale",area:"trabajo",prompt:"¿Qué tan sobrecargada te sientes por la cantidad de cosas que atiendes?",explain:"No solo por horas, también por cantidad de frentes mentales."},
+        {id:"t2",type:"multi",area:"trabajo",prompt:"¿Dónde sientes hoy el mayor desborde?",explain:"Marca lo que más pesa.",options:["Microempresa familiar","Negocios propios","Temas financieros","Pendientes que nunca terminan","Resolverle a otros","No delegar","Apagar incendios"]},
+        {id:"t3",type:"scale",area:"trabajo",prompt:"¿Qué tan capaz te sientes de soltar, reducir o delegar algo?",explain:"A veces el obstáculo no es técnico, sino emocional.",reverse:true},
+        {id:"t4",type:"text",area:"trabajo",prompt:"¿Qué frente sabes que hoy te está costando más de lo que te aporta?",explain:"No hace falta decidir ya qué harás con eso. Primero nómbralo."},
+        {id:"t5",type:"text",area:"trabajo",prompt:"Si no intentaras sostenerlo todo, ¿qué tres cosas dejarían de depender tanto de ti?",explain:"Piensa en alivio real, no en fantasía."}
+      ]
+    },
+    {
+      key:"tiempo",
+      title:"Tiempo real, organización y fugas de energía",
+      intro:"Mirar el día vivido, no el día ideal.",
+      pedagogy:"Muchas personas creen que les falta disciplina cuando en realidad les falta mapa. Sin ver a dónde se va la energía, todo cambio suena abstracto.",
+      questions:[
+        {id:"ti1",type:"scale",area:"tiempo",prompt:"¿Qué tan claro tienes hoy a dónde se te va el tiempo y la energía?",explain:"No pregunto si trabajas mucho, sino si ves el mapa.",reverse:true},
+        {id:"ti2",type:"multi",area:"tiempo",prompt:"¿Dónde sientes más fugas de energía?",explain:"Marca lo que más te drena.",options:["Pensar en demasiadas cosas","Resolver urgencias ajenas","Celular o redes","Desorden","Traslados","Discusión o conflicto","Preocupación constante","No parar nunca"]},
+        {id:"ti3",type:"scale",area:"tiempo",prompt:"¿Qué tanto haces cosas por costumbre o miedo más que por verdadera elección?",explain:"La costumbre también puede ser una cárcel."},
+        {id:"ti4",type:"text",area:"tiempo",prompt:"¿Qué tarea o hábito podrías reducir esta semana sin que el mundo se caiga?",explain:"Busca algo pequeño pero real."},
+        {id:"ti5",type:"text",area:"tiempo",prompt:"¿Qué parte de tu día casi nunca tiene espacio para ti?",explain:"Nombrar la ausencia ayuda a verla como área de trabajo."}
+      ]
+    },
+    {
+      key:"apoyo",
+      title:"Red de apoyo, ayuda y carga compartida",
+      intro:"Ver si realmente estás acompañada o solo rodeada de gente.",
+      pedagogy:"Tener personas cerca no siempre significa tener apoyo. A veces hay presencia, pero no alivio. O hay ayuda disponible, pero cuesta pedirla.",
+      questions:[
+        {id:"ap1",type:"text",area:"apoyo",prompt:"¿Quiénes son hoy tus apoyos más reales?",explain:"Piensa en apoyo emocional, práctico, económico o con tus hijos."},
+        {id:"ap2",type:"scale",area:"apoyo",prompt:"¿Qué tan fácil te resulta pedir ayuda concreta?",explain:"No ayuda ideal: ayuda específica y aterrizada.",reverse:true},
+        {id:"ap3",type:"scale",area:"apoyo",prompt:"¿Qué tanto sientes que te acostumbraste a ser la que resuelve?",explain:"A veces eso da identidad, pero también te aísla."},
+        {id:"ap4",type:"text",area:"apoyo",prompt:"¿Qué ayuda necesitas y no estás pidiendo?",explain:"Mientras más concreta, más útil."}
+      ]
+    },
+    {
+      key:"responsabilidad",
+      title:"Responsabilidad, repetición y posibilidad de cambio",
+      intro:"Mirar tu parte sin desconocer lo injusto que te ha tocado cargar.",
+      pedagogy:"Asumir responsabilidad no es culparte de todo. Es distinguir entre lo que te pasó, lo que sigues sosteniendo por miedo y lo que ya podrías empezar a mover.",
+      questions:[
+        {id:"c1",type:"scale",area:"responsabilidad",prompt:"¿Qué tanto reconoces que algunos ciclos dolorosos se repiten también por decisiones tuyas, omisiones o miedo?",explain:"No toda repetición es elección consciente, pero verla da margen de cambio."},
+        {id:"c2",type:"scale",area:"responsabilidad",prompt:"¿Qué tanto sientes que tu vida actual se armó alrededor de sobrevivir más que de vivir bien?",explain:"Sobrevivir mucho tiempo también se vuelve costumbre."},
+        {id:"c3",type:"text",area:"responsabilidad",prompt:"¿Qué beneficio secundario puede tener para ti seguir igual en alguna parte de tu vida?",explain:"A veces seguir igual evita vacío, conflicto, vergüenza o decisiones difíciles."},
+        {id:"c4",type:"text",area:"responsabilidad",prompt:"¿Cuál es hoy la verdad incómoda que más te cuesta mirar sobre tu manera de vivir?",explain:"No busques una frase elegante. Busca una frase honesta."}
+      ]
+    }
+  ];
 
-function prettyArea(k){return ({seguridad:'Seguridad y estabilidad',madre:'Relación con la madre y familia',economia:'Manejo económico',hijos:'Relación con los hijos',autocuidado:'Autocuidado y energía',afectiva:'Soledad y patrón afectivo',trabajo:'Trabajo y frentes abiertos',tiempo:'Tiempo y fugas de energía',apoyo:'Red de apoyo',responsabilidad:'Responsabilidad y repetición'})[k]||k}
-function loadAll(){const raw=localStorage.getItem(STORAGE_KEY); if(raw){try{Object.assign(APP,JSON.parse(raw))}catch(e){}} renderPreview(); renderHistory();}
-function saveAll(){localStorage.setItem(STORAGE_KEY,JSON.stringify(APP))}
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});updateProgressText();}
-function renderPreview(){const host=document.getElementById('modulePreview');host.innerHTML='';modules.forEach((m,i)=>{const d=document.createElement('div');d.className='module';d.innerHTML='<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start"><div><h3>'+(i+1)+'. '+m.title+'</h3><p class="muted">'+m.intro+'</p></div><span class="badge">'+m.questions.length+' preguntas</span></div>';host.appendChild(d);});}
-function newRun(type){return {id:String(Date.now()+Math.random()),type,createdAt:new Date().toISOString(),questionAnswers:{},summary:{}}}
-function startInitial(){APP.flow='initial';APP.currentRun=newRun('initial');APP.moduleIndex=0;APP.questionIndex=0;renderModule();showScreen('screen-module');saveAll();}
-function startCheckin(){APP.flow='checkin';APP.currentRun=newRun('checkin');APP.currentRun.quick={};renderCheckin();showScreen('screen-module');saveAll();}
-function renderCheckin(){const host=document.getElementById('questionHost');document.getElementById('moduleChip').textContent='Seguimiento';document.getElementById('moduleTitle').textContent='Chequeo semanal o quincenal';document.getElementById('moduleIntro').textContent='Un vistazo corto para ver si algo se está moviendo o si hace falta reajustar.';document.getElementById('modulePedagogy').innerHTML='El seguimiento no sirve para exigirte perfección. Sirve para detectar tendencia: dónde hay alivio, dónde hay recaída y dónde toca insistir con pasos pequeños.';host.innerHTML='';const areas=['seguridad','madre','economia','hijos','autocuidado','afectiva','trabajo','tiempo','apoyo','responsabilidad'];areas.forEach(area=>{const card=document.createElement('div');card.className='card';card.innerHTML='<h3>'+prettyArea(area)+'</h3><label>¿Cómo se ha movido esta área desde el último registro?</label>';const scale=document.createElement('div');scale.className='scale';followupChoices.forEach((c,idx)=>{const b=document.createElement('button');b.type='button';b.textContent=c[1];if(APP.currentRun.quick[area]===idx+1)b.classList.add('selected');b.onclick=()=>{APP.currentRun.quick[area]=idx+1;saveAll();renderCheckin();};scale.appendChild(b)});card.appendChild(scale);const lab=document.createElement('label');lab.textContent='Observación breve';const ta=document.createElement('textarea');ta.value=APP.currentRun.quick[area+'_note']||'';ta.placeholder='¿Qué pasó aquí desde el último registro?';ta.oninput=e=>{APP.currentRun.quick[area+'_note']=e.target.value;saveAll();};card.append(lab,ta);host.appendChild(card);});const final=document.createElement('div');final.className='card';final.innerHTML='<label>¿Cuál es tu foco pequeño para los próximos 7 días?</label><textarea id="checkinFocus" placeholder="Algo muy concreto y posible.">'+(APP.currentRun.quick.focus||'')+'</textarea><div class="actions"><button class="btn" onclick="finishCheckin()">Guardar seguimiento</button></div>';host.appendChild(final);document.getElementById('checkinFocus').oninput=e=>{APP.currentRun.quick.focus=e.target.value;saveAll();};document.getElementById('bar').style.width='100%';document.getElementById('progressText').textContent='Seguimiento';}
-function finishCheckin(){APP.runs.push(APP.currentRun);saveAll();renderHistory();showScreen('screen-history');}
-function renderModule(){const mod=modules[APP.moduleIndex];const q=mod.questions[APP.questionIndex];document.getElementById('moduleChip').textContent='Módulo '+(APP.moduleIndex+1)+' de '+modules.length;document.getElementById('moduleTitle').textContent=mod.title;document.getElementById('moduleIntro').textContent=mod.intro;document.getElementById('modulePedagogy').innerHTML=mod.pedagogy;const host=document.getElementById('questionHost');host.innerHTML='';const card=document.createElement('div');card.className='card';card.innerHTML='<h3>'+(APP.questionIndex+1)+'. '+q.prompt+'</h3><p class="muted">'+(q.explain||'')+'</p>';const answer=APP.currentRun.questionAnswers[q.id];
-if(q.type==='scale'){const scale=document.createElement('div');scale.className='scale';[1,2,3,4,5].forEach(n=>{const b=document.createElement('button');b.type='button';b.innerHTML='<strong>'+n+'</strong><br><span class="tiny">'+severityLabels[n]+'</span>';if(answer===n)b.classList.add('selected');b.onclick=()=>{APP.currentRun.questionAnswers[q.id]=n;saveAll();renderModule();};scale.appendChild(b)});card.appendChild(scale);}
-if(q.type==='yesno'){const scale=document.createElement('div');scale.className='scale';['No','Tal vez','Sí'].forEach((txt,idx)=>{const val=[1,3,5][idx];const b=document.createElement('button');b.type='button';b.textContent=txt;if(answer===val)b.classList.add('selected');b.onclick=()=>{APP.currentRun.questionAnswers[q.id]=val;saveAll();renderModule();};scale.appendChild(b)});card.appendChild(scale);}
-if(q.type==='multi'){const opts=APP.currentRun.questionAnswers[q.id]||[];q.options.forEach(opt=>{const wrap=document.createElement('label');wrap.style.display='flex';wrap.style.gap='10px';wrap.style.alignItems='flex-start';wrap.style.margin='10px 0';wrap.innerHTML='<input type="checkbox" '+(opts.includes(opt)?'checked':'')+' /><span>'+opt+'</span>';wrap.querySelector('input').onchange=e=>{let arr=APP.currentRun.questionAnswers[q.id]||[];if(e.target.checked){if(!arr.includes(opt))arr.push(opt)}else{arr=arr.filter(v=>v!==opt)}APP.currentRun.questionAnswers[q.id]=arr;saveAll();};card.appendChild(wrap);});}
-if(q.type==='text'){const ta=document.createElement('textarea');ta.placeholder='Escribe aquí...';ta.value=answer||'';ta.oninput=e=>{APP.currentRun.questionAnswers[q.id]=e.target.value;saveAll();};card.appendChild(ta);}
-if(q.area==='economia'){const tip=document.createElement('div');tip.className='note';tip.innerHTML='<strong>Recordatorio.</strong> El registro detallado de ingresos, gastos, deudas y déficits conviene hacerlo por fuera de la app. Aquí solo tomamos consciencia y orientación.';card.appendChild(tip);}
-host.appendChild(card);const total=modules.reduce((a,m)=>a+m.questions.length,0);const passed=modules.slice(0,APP.moduleIndex).reduce((a,m)=>a+m.questions.length,0)+APP.questionIndex+1;document.getElementById('bar').style.width=Math.round((passed/total)*100)+'%';document.getElementById('progressText').textContent=mod.title+' · pregunta '+(APP.questionIndex+1)+' de '+mod.questions.length;}
-function nextQuestion(){const mod=modules[APP.moduleIndex];if(APP.questionIndex<mod.questions.length-1){APP.questionIndex++;renderModule();saveAll();return;}if(APP.moduleIndex<modules.length-1){APP.moduleIndex++;APP.questionIndex=0;renderModule();saveAll();return;}finishInitial();}
-function prevQuestion(){if(APP.questionIndex>0){APP.questionIndex--;renderModule();saveAll();return;}if(APP.moduleIndex>0){APP.moduleIndex--;APP.questionIndex=modules[APP.moduleIndex].questions.length-1;renderModule();}}
-function buildSummary(run){const areas={};modules.forEach(mod=>{let sum=0,count=0;mod.questions.forEach(q=>{const ans=run.questionAnswers[q.id];if(q.type==='scale'||q.type==='yesno'){let val=typeof ans==='number'?ans:null;if(val!==null){if(q.reverse)val=6-val;sum+=val;count++;}}if(q.type==='multi'){const len=(ans||[]).length;if(len){sum+=Math.min(5,Math.max(1,Math.ceil(len/2)));count++;}}});areas[mod.key]=count?+(sum/count).toFixed(2):0;});const ranked=Object.entries(areas).sort((a,b)=>b[1]-a[1]);const urgent=ranked.filter(x=>x[1]>=4),mid=ranked.filter(x=>x[1]>=3&&x[1]<4),long=ranked.filter(x=>x[1]<3);const micro=ranked.slice(0,3).map(([k,v])=>({area:k,score:v,step:suggestStep(k)}));const safety=areas.seguridad>=4||((run.questionAnswers['s2']||0)>=3);return {areas,ranked,urgent,mid,long,micro,safety};}
-function suggestStep(area){return ({seguridad:'Definir hoy mismo un límite concreto de contacto, exposición o acceso con la persona o situación que más te inquieta.',madre:'Escribir una frase límite breve y practicable que puedas sostener sin explicarte de más.',economia:'Hacer por fuera de la app un corte honesto de déficit, deudas y frentes que hoy sostienes.',hijos:'Separar 15 a 20 minutos reales con cada hijo en la semana sin logística ni corrección como foco principal.',autocuidado:'Escoger un gesto mínimo diario de recuperación: sueño, comida, pausa, orden o movimiento.',afectiva:'Poner por escrito tus tres banderas rojas no negociables antes de abrir espacio a otro vínculo.',trabajo:'Identificar un frente a reducir, pausar o delegar en los próximos 7 días.',tiempo:'Eliminar o reducir una fuga de energía visible esta semana.',apoyo:'Pedir una ayuda concreta y específica en vez de esperar a colapsar.',responsabilidad:'Nombrar una repetición propia que ya no quieres seguir justificando.'})[area]||'Escoger un paso pequeño y medible.'}
-function finishInitial(){APP.currentRun.summary=buildSummary(APP.currentRun);APP.runs.push(APP.currentRun);saveAll();renderSummary(APP.currentRun);renderHistory();showScreen('screen-summary');}
-function renderSummary(run){const s=run.summary;const avg=(Object.values(s.areas).reduce((a,b)=>a+b,0)/Object.values(s.areas).length).toFixed(1);document.getElementById('kpis').innerHTML='<div class="card"><div class="muted tiny">Promedio de presión actual</div><div class="knum">'+avg+'</div></div><div class="card"><div class="muted tiny">Áreas urgentes</div><div class="knum">'+s.urgent.length+'</div></div><div class="card"><div class="muted tiny">Áreas a vigilar</div><div class="knum">'+s.mid.length+'</div></div><div class="card"><div class="muted tiny">Registro</div><div class="knum">'+new Date(run.createdAt).toLocaleDateString('es-CO')+'</div></div>';const bands=document.getElementById('bands');bands.innerHTML='';[['urgent','urgent','Urgentes: piden cambios pronto o medidas de protección o alivio.'],['mid','mid','Mediano plazo: no explotan hoy, pero sí sostienen desgaste.'],['long','long','Largo plazo: áreas para consolidar o vigilar.']].forEach(([key,cls,desc])=>{const arr=s[key]||[];const box=document.createElement('div');box.className='result-band '+cls;box.innerHTML='<strong>'+desc+'</strong>';if(!arr.length){box.innerHTML+='<p class="muted">No aparecen áreas en este nivel.</p>';}arr.forEach(([area,val])=>{box.innerHTML+='<p><strong>'+prettyArea(area)+'</strong> · nivel '+val.toFixed(1)+'</p>';});bands.appendChild(box);});if(s.safety){const warn=document.createElement('div');warn.className='note warn';warn.innerHTML='<strong>Atención.</strong> Tus respuestas sugieren que conviene no tratar todo como solo organización. Puede haber algo de seguridad emocional o de límites que necesita atención prioritaria y conversación directa en el acompañamiento.';bands.prepend(warn);}const mp=document.getElementById('microPlan');mp.innerHTML='';s.micro.forEach((m,i)=>{const c=document.createElement('div');c.className='card';c.innerHTML='<h3>'+(i+1)+'. '+prettyArea(m.area)+'</h3><p class="muted">Nivel actual: '+m.score.toFixed(1)+'</p><p><strong>Microcambio sugerido:</strong> '+m.step+'</p><label>Tu versión de este paso</label><textarea id="plan_'+m.area+'" placeholder="Escríbelo a tu manera.">'+((run.summary.userSteps||{})[m.area]||'')+'</textarea>';mp.appendChild(c);});setTimeout(()=>{s.micro.forEach(m=>{const el=document.getElementById('plan_'+m.area);if(el)el.oninput=e=>{run.summary.userSteps??={};run.summary.userSteps[m.area]=e.target.value;saveAll();};});},50);renderPriorityScale(run);}
-function renderPriorityScale(run){const host=document.getElementById('priorityScale');host.innerHTML='';[1,2,3,4,5].forEach(n=>{const b=document.createElement('button');b.type='button';b.innerHTML='<strong>'+n+'</strong><br><span class="tiny">'+['Nada viable','Muy difícil','Posible con esfuerzo','Bastante viable','Muy viable'][n-1]+'</span>';if((run.summary.funnel||{}).viability===n)b.classList.add('selected');b.onclick=()=>{run.summary.funnel??={};run.summary.funnel.viability=n;saveAll();renderPriorityScale(run);};host.appendChild(b);});document.getElementById('priorityField').value=(run.summary.funnel||{}).priority||'';document.getElementById('smallStepField').value=(run.summary.funnel||{}).smallStep||'';}
-function saveSummaryChoices(){const run=APP.runs[APP.runs.length-1];if(!run||!run.summary)return;run.summary.funnel??={};run.summary.funnel.priority=document.getElementById('priorityField').value;run.summary.funnel.smallStep=document.getElementById('smallStepField').value;saveAll();alert('Embudo guardado.');}
-function renderHistory(){const host=document.getElementById('historyHost');if(!APP.runs.length){host.innerHTML='<p class="muted">Todavía no hay registros guardados.</p>';return;}const initials=APP.runs.filter(r=>r.type==='initial');const checkins=APP.runs.filter(r=>r.type==='checkin');let html='';if(initials.length){html+='<h3>Escaneos iniciales</h3>';initials.slice().reverse().forEach(r=>{const s=r.summary||buildSummary(r);html+='<div class="card"><p><strong>'+new Date(r.createdAt).toLocaleString('es-CO')+'</strong></p><p class="muted">Áreas más altas: '+s.ranked.slice(0,3).map(x=>prettyArea(x[0])).join(', ')+'</p><div class="actions"><button class="btn small secondary" onclick="openRun(\\''+r.id+'\\')">Abrir informe</button><button class="btn small ghost" onclick="deleteRun(\\''+r.id+'\\')">Eliminar</button></div></div>';});}if(checkins.length){html+='<h3>Seguimientos</h3>';checkins.slice().reverse().forEach(r=>{html+='<div class="card"><p><strong>'+new Date(r.createdAt).toLocaleString('es-CO')+'</strong></p><p class="muted">'+(r.quick&&r.quick.focus?('Foco: '+r.quick.focus):'Sin foco escrito.')+'</p><div class="actions"><button class="btn small ghost" onclick="deleteRun(\\''+r.id+'\\')">Eliminar</button></div></div>';});}if(initials.length>=2){const a=initials[initials.length-2],b=initials[initials.length-1];html+='<h3>Comparativa de los dos últimos escaneos</h3><div class="card">';Object.keys((b.summary||buildSummary(b)).areas).forEach(area=>{const av=(a.summary||buildSummary(a)).areas[area]||0;const bv=(b.summary||buildSummary(b)).areas[area]||0;const diff=(bv-av).toFixed(1);const symbol=diff>0?'↑':diff<0?'↓':'→';html+='<p><strong>'+prettyArea(area)+'</strong>: '+av.toFixed(1)+' → '+bv.toFixed(1)+' ('+symbol+' '+diff+')</p>';});html+='</div>';}host.innerHTML=html;}
-function openRun(id){const run=APP.runs.find(r=>r.id===id);if(!run)return;if(!run.summary)run.summary=buildSummary(run);renderSummary(run);showScreen('screen-summary');}
-function deleteRun(id){APP.runs=APP.runs.filter(r=>r.id!==id);saveAll();renderHistory();}
-function exportData(){const blob=new Blob([JSON.stringify(APP,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='viviana-mapa-reinicio.json';a.click();}
-function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(data.runs){Object.assign(APP,data);saveAll();renderHistory();renderPreview();alert('Datos importados.');}else{alert('Archivo no válido.')}}catch(err){alert('No se pudo importar el archivo.')}};reader.readAsText(file);}
-function updateProgressText(){const visible=[...document.querySelectorAll('.screen:not(.hidden)')][0];if(visible&&visible.id==='screen-home')document.getElementById('progressText').textContent='Inicio';if(visible&&visible.id==='screen-summary')document.getElementById('progressText').textContent='Informe';if(visible&&visible.id==='screen-history')document.getElementById('progressText').textContent='Historial';}
-loadAll();
+  const APP = { runs: [], currentRun: null, flow: "initial", moduleIndex: 0, questionIndex: 0 };
+
+  function $(id){ return document.getElementById(id); }
+
+  function prettyArea(k){
+    return ({
+      seguridad:"Seguridad y estabilidad",
+      madre:"Relación con la madre y familia",
+      economia:"Manejo económico",
+      hijos:"Relación con los hijos",
+      autocuidado:"Autocuidado y energía",
+      afectiva:"Soledad y patrón afectivo",
+      trabajo:"Trabajo y frentes abiertos",
+      tiempo:"Tiempo y fugas de energía",
+      apoyo:"Red de apoyo",
+      responsabilidad:"Responsabilidad y repetición"
+    })[k] || k;
+  }
+
+  function saveAll(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(APP)); }
+
+  function loadAll(){
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    try { Object.assign(APP, JSON.parse(raw)); } catch (err) { console.error(err); }
+  }
+
+  function showScreen(id){
+    document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
+    $(id).classList.remove("hidden");
+    updateProgressText();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function updateProgressText(){
+    const visible = document.querySelector(".screen:not(.hidden)");
+    if (!visible) return;
+    const map = {
+      "screen-home":"Inicio",
+      "screen-summary":"Informe",
+      "screen-history":"Historial",
+      "screen-module":$("progressText").textContent
+    };
+    if (map[visible.id]) $("progressText").textContent = map[visible.id];
+  }
+
+  function renderPreview(){
+    const host = $("modulePreview");
+    host.innerHTML = "";
+    modules.forEach((m, i) => {
+      const d = document.createElement("div");
+      d.className = "module";
+      d.innerHTML = `<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start"><div><h3>${i + 1}. ${m.title}</h3><p class="muted">${m.intro}</p></div><span class="badge">${m.questions.length} preguntas</span></div>`;
+      host.appendChild(d);
+    });
+  }
+
+  function newRun(type){
+    return { id:String(Date.now()+Math.random()), type, createdAt:new Date().toISOString(), questionAnswers:{}, summary:{} };
+  }
+
+  function startInitial(){
+    APP.flow = "initial";
+    APP.currentRun = newRun("initial");
+    APP.moduleIndex = 0;
+    APP.questionIndex = 0;
+    renderModule();
+    showScreen("screen-module");
+    saveAll();
+  }
+
+  function startCheckin(){
+    APP.flow = "checkin";
+    APP.currentRun = newRun("checkin");
+    APP.currentRun.quick = {};
+    renderCheckin();
+    showScreen("screen-module");
+    saveAll();
+  }
+
+  function renderCheckin(){
+    $("moduleChip").textContent = "Seguimiento";
+    $("moduleTitle").textContent = "Chequeo semanal o quincenal";
+    $("moduleIntro").textContent = "Un vistazo corto para ver si algo se está moviendo o si hace falta reajustar.";
+    $("modulePedagogy").textContent = "El seguimiento no sirve para exigirte perfección. Sirve para detectar tendencia: dónde hay alivio, dónde hay recaída y dónde toca insistir con pasos pequeños.";
+    $("prevBtn").classList.add("hidden");
+    $("nextBtn").classList.add("hidden");
+
+    const host = $("questionHost");
+    host.innerHTML = "";
+    const areas = ["seguridad","madre","economia","hijos","autocuidado","afectiva","trabajo","tiempo","apoyo","responsabilidad"];
+
+    areas.forEach(area => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<h3>${prettyArea(area)}</h3><label>¿Cómo se ha movido esta área desde el último registro?</label>`;
+
+      const scale = document.createElement("div");
+      scale.className = "scale";
+
+      followupChoices.forEach((txt, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = txt;
+        if (APP.currentRun.quick[area] === idx + 1) b.classList.add("selected");
+        b.addEventListener("click", () => {
+          APP.currentRun.quick[area] = idx + 1;
+          saveAll();
+          renderCheckin();
+        });
+        scale.appendChild(b);
+      });
+
+      card.appendChild(scale);
+
+      const lab = document.createElement("label");
+      lab.textContent = "Observación breve";
+
+      const ta = document.createElement("textarea");
+      ta.placeholder = "¿Qué pasó aquí desde el último registro?";
+      ta.value = APP.currentRun.quick[area + "_note"] || "";
+      ta.addEventListener("input", e => {
+        APP.currentRun.quick[area + "_note"] = e.target.value;
+        saveAll();
+      });
+
+      card.append(lab, ta);
+      host.appendChild(card);
+    });
+
+    const final = document.createElement("div");
+    final.className = "card";
+    final.innerHTML = `<label>¿Cuál es tu foco pequeño para los próximos 7 días?</label>`;
+
+    const ta = document.createElement("textarea");
+    ta.placeholder = "Algo muy concreto y posible.";
+    ta.value = APP.currentRun.quick.focus || "";
+    ta.addEventListener("input", e => {
+      APP.currentRun.quick.focus = e.target.value;
+      saveAll();
+    });
+
+    final.appendChild(ta);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const btn = document.createElement("button");
+    btn.className = "btn";
+    btn.textContent = "Guardar seguimiento";
+    btn.addEventListener("click", finishCheckin);
+
+    actions.appendChild(btn);
+    final.appendChild(actions);
+    host.appendChild(final);
+
+    $("bar").style.width = "100%";
+    $("progressText").textContent = "Seguimiento";
+  }
+
+  function finishCheckin(){
+    APP.runs.push(APP.currentRun);
+    saveAll();
+    renderHistory();
+    showScreen("screen-history");
+  }
+
+  function renderModule(){
+    $("prevBtn").classList.remove("hidden");
+    $("nextBtn").classList.remove("hidden");
+
+    const mod = modules[APP.moduleIndex];
+    const q = mod.questions[APP.questionIndex];
+
+    $("moduleChip").textContent = `Módulo ${APP.moduleIndex + 1} de ${modules.length}`;
+    $("moduleTitle").textContent = mod.title;
+    $("moduleIntro").textContent = mod.intro;
+    $("modulePedagogy").textContent = mod.pedagogy;
+
+    const host = $("questionHost");
+    host.innerHTML = "";
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<h3>${APP.questionIndex + 1}. ${q.prompt}</h3><p class="muted">${q.explain || ""}</p>`;
+
+    const answer = APP.currentRun.questionAnswers[q.id];
+
+    if (q.type === "scale") {
+      const scale = document.createElement("div");
+      scale.className = "scale";
+      [1,2,3,4,5].forEach(n => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.innerHTML = `<strong>${n}</strong><br><span class="tiny">${severityLabels[n]}</span>`;
+        if (answer === n) b.classList.add("selected");
+        b.addEventListener("click", () => {
+          APP.currentRun.questionAnswers[q.id] = n;
+          saveAll();
+          renderModule();
+        });
+        scale.appendChild(b);
+      });
+      card.appendChild(scale);
+    }
+
+    if (q.type === "yesno") {
+      const scale = document.createElement("div");
+      scale.className = "scale";
+      [["No",1],["Tal vez",3],["Sí",5]].forEach(([txt,val]) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = txt;
+        if (answer === val) b.classList.add("selected");
+        b.addEventListener("click", () => {
+          APP.currentRun.questionAnswers[q.id] = val;
+          saveAll();
+          renderModule();
+        });
+        scale.appendChild(b);
+      });
+      card.appendChild(scale);
+    }
+
+    if (q.type === "multi") {
+      const arr = APP.currentRun.questionAnswers[q.id] || [];
+      q.options.forEach(opt => {
+        const row = document.createElement("label");
+        row.className = "checkline";
+
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.checked = arr.includes(opt);
+
+        const span = document.createElement("span");
+        span.textContent = opt;
+
+        input.addEventListener("change", () => {
+          let cur = APP.currentRun.questionAnswers[q.id] || [];
+          if (input.checked) {
+            if (!cur.includes(opt)) cur.push(opt);
+          } else {
+            cur = cur.filter(v => v !== opt);
+          }
+          APP.currentRun.questionAnswers[q.id] = cur;
+          saveAll();
+        });
+
+        row.append(input, span);
+        card.appendChild(row);
+      });
+    }
+
+    if (q.type === "text") {
+      const ta = document.createElement("textarea");
+      ta.placeholder = "Escribe aquí...";
+      ta.value = answer || "";
+      ta.addEventListener("input", e => {
+        APP.currentRun.questionAnswers[q.id] = e.target.value;
+        saveAll();
+      });
+      card.appendChild(ta);
+    }
+
+    if (q.area === "economia") {
+      const note = document.createElement("div");
+      note.className = "note";
+      note.innerHTML = "<strong>Recordatorio.</strong> El registro detallado de ingresos, gastos, deudas y déficits conviene hacerlo por fuera de la app. Aquí solo tomamos consciencia y orientación.";
+      card.appendChild(note);
+    }
+
+    host.appendChild(card);
+
+    const total = modules.reduce((a, m) => a + m.questions.length, 0);
+    const passed = modules.slice(0, APP.moduleIndex).reduce((a, m) => a + m.questions.length, 0) + APP.questionIndex + 1;
+    $("bar").style.width = Math.round((passed / total) * 100) + "%";
+    $("progressText").textContent = `${mod.title} · pregunta ${APP.questionIndex + 1} de ${mod.questions.length}`;
+  }
+
+  function nextQuestion(){
+    if (APP.flow === "checkin") return;
+    const mod = modules[APP.moduleIndex];
+
+    if (APP.questionIndex < mod.questions.length - 1) {
+      APP.questionIndex++;
+      renderModule();
+      saveAll();
+      return;
+    }
+
+    if (APP.moduleIndex < modules.length - 1) {
+      APP.moduleIndex++;
+      APP.questionIndex = 0;
+      renderModule();
+      saveAll();
+      return;
+    }
+
+    finishInitial();
+  }
+
+  function prevQuestion(){
+    if (APP.flow === "checkin") return;
+
+    if (APP.questionIndex > 0) {
+      APP.questionIndex--;
+      renderModule();
+      saveAll();
+      return;
+    }
+
+    if (APP.moduleIndex > 0) {
+      APP.moduleIndex--;
+      APP.questionIndex = modules[APP.moduleIndex].questions.length - 1;
+      renderModule();
+      saveAll();
+    }
+  }
+
+  function suggestStep(area){
+    return ({
+      seguridad:"Definir hoy mismo un límite concreto de contacto, exposición o acceso con la persona o situación que más te inquieta.",
+      madre:"Escribir una frase límite breve y practicable que puedas sostener sin explicarte de más.",
+      economia:"Hacer por fuera de la app un corte honesto de déficit, deudas y frentes que hoy sostienes.",
+      hijos:"Separar 15 a 20 minutos reales con cada hijo en la semana sin logística ni corrección como foco principal.",
+      autocuidado:"Escoger un gesto mínimo diario de recuperación: sueño, comida, pausa, orden o movimiento.",
+      afectiva:"Poner por escrito tus tres banderas rojas no negociables antes de abrir espacio a otro vínculo.",
+      trabajo:"Identificar un frente a reducir, pausar o delegar en los próximos 7 días.",
+      tiempo:"Eliminar o reducir una fuga de energía visible esta semana.",
+      apoyo:"Pedir una ayuda concreta y específica en vez de esperar a colapsar.",
+      responsabilidad:"Nombrar una repetición propia que ya no quieres seguir justificando."
+    })[area] || "Escoger un paso pequeño y medible.";
+  }
+
+  function buildSummary(run){
+    const areas = {};
+
+    modules.forEach(mod => {
+      let sum = 0;
+      let count = 0;
+
+      mod.questions.forEach(q => {
+        const ans = run.questionAnswers[q.id];
+
+        if (q.type === "scale" || q.type === "yesno") {
+          let val = typeof ans === "number" ? ans : null;
+          if (val !== null) {
+            if (q.reverse) val = 6 - val;
+            sum += val;
+            count++;
+          }
+        }
+
+        if (q.type === "multi") {
+          const len = (ans || []).length;
+          if (len) {
+            sum += Math.min(5, Math.max(1, Math.ceil(len / 2)));
+            count++;
+          }
+        }
+      });
+
+      areas[mod.key] = count ? +(sum / count).toFixed(2) : 0;
+    });
+
+    const ranked = Object.entries(areas).sort((a,b) => b[1] - a[1]);
+    const urgent = ranked.filter(x => x[1] >= 4);
+    const mid = ranked.filter(x => x[1] >= 3 && x[1] < 4);
+    const long = ranked.filter(x => x[1] < 3);
+    const micro = ranked.slice(0,3).map(([k,v]) => ({ area:k, score:v, step:suggestStep(k) }));
+    const safety = areas.seguridad >= 4 || ((run.questionAnswers["s2"] || 0) >= 3);
+
+    return { areas, ranked, urgent, mid, long, micro, safety };
+  }
+
+  function finishInitial(){
+    APP.currentRun.summary = buildSummary(APP.currentRun);
+    APP.runs.push(APP.currentRun);
+    saveAll();
+    renderSummary(APP.currentRun);
+    renderHistory();
+    showScreen("screen-summary");
+  }
+
+  function renderPriorityScale(run){
+    const host = $("priorityScale");
+    host.innerHTML = "";
+    const labels = ["Nada viable","Muy difícil","Posible con esfuerzo","Bastante viable","Muy viable"];
+
+    [1,2,3,4,5].forEach(n => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.innerHTML = `<strong>${n}</strong><br><span class="tiny">${labels[n - 1]}</span>`;
+      if ((run.summary.funnel || {}).viability === n) b.classList.add("selected");
+      b.addEventListener("click", () => {
+        run.summary.funnel = run.summary.funnel || {};
+        run.summary.funnel.viability = n;
+        saveAll();
+        renderPriorityScale(run);
+      });
+      host.appendChild(b);
+    });
+
+    $("priorityField").value = (run.summary.funnel || {}).priority || "";
+    $("smallStepField").value = (run.summary.funnel || {}).smallStep || "";
+  }
+
+  function renderSummary(run){
+    const s = run.summary;
+    const avg = (Object.values(s.areas).reduce((a,b) => a + b, 0) / Object.values(s.areas).length).toFixed(1);
+
+    $("kpis").innerHTML = `
+      <div class="card"><div class="muted tiny">Promedio de presión actual</div><div class="knum">${avg}</div></div>
+      <div class="card"><div class="muted tiny">Áreas urgentes</div><div class="knum">${s.urgent.length}</div></div>
+      <div class="card"><div class="muted tiny">Áreas a vigilar</div><div class="knum">${s.mid.length}</div></div>
+      <div class="card"><div class="muted tiny">Registro</div><div class="knum">${new Date(run.createdAt).toLocaleDateString("es-CO")}</div></div>
+    `;
+
+    const bands = $("bands");
+    bands.innerHTML = "";
+
+    [
+      ["urgent","urgent","Urgentes: piden cambios pronto o medidas de protección o alivio."],
+      ["mid","mid","Mediano plazo: no explotan hoy, pero sí sostienen desgaste."],
+      ["long","long","Largo plazo: áreas para consolidar o vigilar."]
+    ].forEach(([key, cls, desc]) => {
+      const arr = s[key] || [];
+      const box = document.createElement("div");
+      box.className = "result-band " + cls;
+      box.innerHTML = `<strong>${desc}</strong>`;
+
+      if (!arr.length) box.innerHTML += `<p class="muted">No aparecen áreas en este nivel.</p>`;
+
+      arr.forEach(([area, val]) => {
+        box.innerHTML += `<p><strong>${prettyArea(area)}</strong> · nivel ${val.toFixed(1)}</p>`;
+      });
+
+      bands.appendChild(box);
+    });
+
+    if (s.safety) {
+      const warn = document.createElement("div");
+      warn.className = "note warn";
+      warn.innerHTML = "<strong>Atención.</strong> Tus respuestas sugieren que conviene no tratar todo como solo organización. Puede haber algo de seguridad emocional o de límites que necesita atención prioritaria y conversación directa conmigo en el acompañamiento.";
+      bands.prepend(warn);
+    }
+
+    const mp = $("microPlan");
+    mp.innerHTML = "";
+
+    s.micro.forEach((m, i) => {
+      const c = document.createElement("div");
+      c.className = "card";
+      c.innerHTML = `
+        <h3>${i + 1}. ${prettyArea(m.area)}</h3>
+        <p class="muted">Nivel actual: ${m.score.toFixed(1)}</p>
+        <p><strong>Microcambio sugerido:</strong> ${m.step}</p>
+        <label>Tu versión de este paso</label>
+      `;
+
+      const ta = document.createElement("textarea");
+      ta.placeholder = "Escríbelo a tu manera.";
+      ta.value = ((run.summary.userSteps || {})[m.area] || "");
+      ta.addEventListener("input", e => {
+        run.summary.userSteps = run.summary.userSteps || {};
+        run.summary.userSteps[m.area] = e.target.value;
+        saveAll();
+      });
+
+      c.appendChild(ta);
+      mp.appendChild(c);
+    });
+
+    renderPriorityScale(run);
+  }
+
+  function saveSummaryChoices(){
+    const run = APP.runs[APP.runs.length - 1];
+    if (!run || !run.summary) return;
+
+    run.summary.funnel = run.summary.funnel || {};
+    run.summary.funnel.priority = $("priorityField").value;
+    run.summary.funnel.smallStep = $("smallStepField").value;
+    saveAll();
+  }
+
+  function renderHistory(){
+    const host = $("historyHost");
+
+    if (!APP.runs.length) {
+      host.innerHTML = `<p class="muted">Todavía no hay registros guardados.</p>`;
+      return;
+    }
+
+    const initials = APP.runs.filter(r => r.type === "initial");
+    const checkins = APP.runs.filter(r => r.type === "checkin");
+
+    host.innerHTML = "";
+
+    if (initials.length) {
+      const h = document.createElement("h3");
+      h.textContent = "Escaneos iniciales";
+      host.appendChild(h);
+
+      initials.slice().reverse().forEach(r => {
+        const s = r.summary || buildSummary(r);
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <p><strong>${new Date(r.createdAt).toLocaleString("es-CO")}</strong></p>
+          <p class="muted">Áreas más altas: ${s.ranked.slice(0,3).map(x => prettyArea(x[0])).join(", ")}</p>
+        `;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const open = document.createElement("button");
+        open.className = "btn small secondary";
+        open.textContent = "Abrir informe";
+        open.addEventListener("click", () => openRun(r.id));
+
+        const del = document.createElement("button");
+        del.className = "btn small ghost";
+        del.textContent = "Eliminar";
+        del.addEventListener("click", () => deleteRun(r.id));
+
+        actions.append(open, del);
+        card.appendChild(actions);
+        host.appendChild(card);
+      });
+    }
+
+    if (checkins.length) {
+      const h = document.createElement("h3");
+      h.textContent = "Seguimientos";
+      host.appendChild(h);
+
+      checkins.slice().reverse().forEach(r => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <p><strong>${new Date(r.createdAt).toLocaleString("es-CO")}</strong></p>
+          <p class="muted">${r.quick && r.quick.focus ? "Foco: " + r.quick.focus : "Sin foco escrito."}</p>
+        `;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const del = document.createElement("button");
+        del.className = "btn small ghost";
+        del.textContent = "Eliminar";
+        del.addEventListener("click", () => deleteRun(r.id));
+
+        actions.appendChild(del);
+        card.appendChild(actions);
+        host.appendChild(card);
+      });
+    }
+
+    if (initials.length >= 2) {
+      const h = document.createElement("h3");
+      h.textContent = "Comparativa de los dos últimos escaneos";
+      host.appendChild(h);
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const a = initials[initials.length - 2];
+      const b = initials[initials.length - 1];
+
+      Object.keys((b.summary || buildSummary(b)).areas).forEach(area => {
+        const av = (a.summary || buildSummary(a)).areas[area] || 0;
+        const bv = (b.summary || buildSummary(b)).areas[area] || 0;
+        const diff = (bv - av).toFixed(1);
+        const symbol = diff > 0 ? "↑" : diff < 0 ? "↓" : "→";
+
+        const p = document.createElement("p");
+        p.innerHTML = `<strong>${prettyArea(area)}</strong>: ${av.toFixed(1)} → ${bv.toFixed(1)} (${symbol} ${diff})`;
+        card.appendChild(p);
+      });
+
+      host.appendChild(card);
+    }
+  }
+
+  function openRun(id){
+    const run = APP.runs.find(r => r.id === id);
+    if (!run) return;
+    if (!run.summary) run.summary = buildSummary(run);
+    renderSummary(run);
+    showScreen("screen-summary");
+  }
+
+  function deleteRun(id){
+    APP.runs = APP.runs.filter(r => r.id !== id);
+    saveAll();
+    renderHistory();
+  }
+
+  function exportData(){
+    const blob = new Blob([JSON.stringify(APP, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "viviana-mapa-reinicio.json";
+    a.click();
+  }
+
+  function importData(e){
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        if (data.runs) {
+          Object.assign(APP, data);
+          saveAll();
+          renderPreview();
+          renderHistory();
+          alert("Datos importados.");
+        } else {
+          alert("Archivo no válido.");
+        }
+      } catch (err) {
+        alert("No se pudo importar el archivo.");
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function bindEvents(){
+    $("startInitialBtn").addEventListener("click", startInitial);
+    $("startCheckinBtn").addEventListener("click", startCheckin);
+    $("historyBtn").addEventListener("click", () => {
+      renderHistory();
+      showScreen("screen-history");
+    });
+
+    $("prevBtn").addEventListener("click", prevQuestion);
+    $("nextBtn").addEventListener("click", nextQuestion);
+    $("homeBtn").addEventListener("click", () => {
+      saveAll();
+      showScreen("screen-home");
+    });
+
+    $("saveFunnelBtn").addEventListener("click", () => {
+      saveSummaryChoices();
+      alert("Embudo guardado.");
+    });
+
+    $("exportBtn").addEventListener("click", exportData);
+    $("printBtn").addEventListener("click", () => window.print());
+
+    $("summaryHistoryBtn").addEventListener("click", () => {
+      renderHistory();
+      showScreen("screen-history");
+    });
+
+    $("backHomeBtn").addEventListener("click", () => showScreen("screen-home"));
+    $("importFile").addEventListener("change", importData);
+
+    $("priorityField").addEventListener("input", saveSummaryChoices);
+    $("smallStepField").addEventListener("input", saveSummaryChoices);
+  }
+
+  loadAll();
+  renderPreview();
+  renderHistory();
+  bindEvents();
+  showScreen("screen-home");
+})();
 </script>
 </body>
 </html>
